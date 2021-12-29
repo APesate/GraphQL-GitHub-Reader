@@ -1,0 +1,67 @@
+query ProfileSummary($username: String!) {
+  user(login: $username) {
+    avatarUrl
+    name
+    login
+    email
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    pinnedItems(first: 3) {
+      nodes {
+        ... on Repository {
+          owner {
+            login
+            avatarUrl
+          }
+          name
+          description
+          stargazerCount
+          languages(first: 1) {
+            nodes {
+              name
+              color
+            }
+          }
+        }
+      }
+    }
+    topRepositories(first: 10, orderBy: {field: STARGAZERS, direction: DESC}) {
+      nodes {
+        owner {
+          login
+          avatarUrl
+        }
+        name
+        description
+        stargazerCount
+        languages(first: 1) {
+          nodes {
+            name
+            color
+          }
+        }
+      }
+    }
+    starredRepositories(first: 10, orderBy: {field: STARRED_AT, direction: ASC}) {
+      nodes {
+        owner {
+          login
+          avatarUrl
+        }
+        name
+        description
+        stargazerCount
+        languages(first: 1) {
+          nodes {
+            name
+            color
+          }
+        }
+      }
+    }
+  }
+}
