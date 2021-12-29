@@ -1,0 +1,194 @@
+//
+//  ProfileSummaryHeaderView.swift.swift
+//  GHPViewer
+//
+//  Created by Andrés Pesate on 29/12/2021.
+//
+
+import UIKit
+
+final class ProfileSummaryHeaderView: UIView {
+  private let contentStackView = UIStackView()
+  private let userContentStackView = UIStackView()
+  private let userContentLabelsStackView = UIStackView()
+  private let followsStackView = UIStackView()
+
+  let avatarImageView = UIImageView()
+  let nameLabel = UILabel()
+  let usernameLabel = UILabel()
+  let emailLabel = UILabel()
+  let followersLabel = UILabel()
+  let followingLabel = UILabel()
+
+  init() {
+    super.init(frame: .zero)
+
+    setupComponents()
+    setupConstraints()
+  }
+
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  // MARK: - Interface
+
+  func configure(with model: ViewModel) {
+    nameLabel.text = model.name
+    usernameLabel.text = model.username
+    followersLabel.attributedText = attributedFollowsString(for: "followers", with: model.followersCount)
+    followingLabel.attributedText = attributedFollowsString(for: "following", with: model.followingCount)
+
+    emailLabel.text = model.email
+    emailLabel.isHidden = model.email == nil || model.email?.isEmpty == true
+
+    loadImage(for: model)
+  }
+
+  // MARK: - Private
+
+  private func attributedFollowsString(for string: String, with count: Int) -> NSAttributedString {
+    let attributedString = NSMutableAttributedString()
+    attributedString
+      .append(.init(
+        string: "\(count)",
+        attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .bold)]
+      ))
+    attributedString
+      .append(.init(
+        string: " \(string)",
+        attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
+      ))
+
+    return attributedString
+  }
+
+  private func loadImage(for model: ViewModel) {
+    DispatchQueue.global().async {
+      guard let data = try? Data(contentsOf: model.avatarUrl) else { return }
+      DispatchQueue.main.async { [weak self] in
+        guard let self = self else { return }
+        self.avatarImageView.image = UIImage(data: data)
+      }
+    }
+  }
+
+  // MARK: Views Setup
+
+  private func setupComponents() {
+    avatarImageView.clipsToBounds = true
+    avatarImageView.layer.cornerRadius = DesignGuidelines.avatarImageSize.height / 2
+
+    nameLabel.font = .systemFont(ofSize: 32, weight: .bold)
+    nameLabel.textColor = .darkText
+
+    usernameLabel.font = .systemFont(ofSize: 16, weight: .regular)
+    usernameLabel.textColor = .darkText
+
+    emailLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+    emailLabel.textColor = .darkText
+
+    followersLabel.font = .systemFont(ofSize: 16, weight: .regular)
+    followersLabel.textColor = .darkText
+
+    followingLabel.font = .systemFont(ofSize: 16, weight: .regular)
+    followingLabel.textColor = .darkText
+
+    userContentLabelsStackView.axis = .vertical
+    userContentLabelsStackView.alignment = .fill
+    userContentLabelsStackView.distribution = .fill
+    [nameLabel, usernameLabel].forEach(userContentLabelsStackView.addArrangedSubview(_:))
+
+    [avatarImageView, userContentLabelsStackView]
+      .forEach(userContentStackView.addArrangedSubview(_:))
+    userContentStackView.axis = .horizontal
+    userContentStackView.alignment = .center
+    userContentStackView.distribution = .fill
+    userContentStackView.setCustomSpacing(
+      DesignGuidelines.avatarLabelsSpacing,
+      after: avatarImageView
+    )
+
+    [followersLabel, followingLabel, spacerView]
+      .forEach(followsStackView.addArrangedSubview(_:))
+    followsStackView.axis = .horizontal
+    followsStackView.alignment = .leading
+    followsStackView.distribution = .fill
+    followsStackView.spacing = DesignGuidelines.followsLabelsSpacing
+
+    [userContentStackView, emailLabel, followsStackView]
+      .forEach(contentStackView.addArrangedSubview(_:))
+    contentStackView.axis = .vertical
+    contentStackView.alignment = .fill
+    contentStackView.distribution = .fill
+    contentStackView.setCustomSpacing(
+      DesignGuidelines.userContentEmailSpacing,
+      after: userContentStackView
+    )
+    contentStackView.setCustomSpacing(
+      DesignGuidelines.emailFollowsSpacing,
+      after: emailLabel
+    )
+
+    addSubview(contentStackView)
+  }
+
+  private func setupConstraints() {
+    contentStackView.translatesAutoresizingMaskIntoConstraints = false
+    avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+
+    NSLayoutConstraint.activate([
+      contentStackView.topAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.topAnchor,
+        constant: DesignGuidelines.margins.top
+      ),
+      contentStackView.leadingAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.leadingAnchor,
+        constant: DesignGuidelines.margins.left
+      ),
+      safeAreaLayoutGuide.bottomAnchor.constraint(
+        equalTo: contentStackView.bottomAnchor,
+        constant: DesignGuidelines.margins.bottom
+      ),
+      safeAreaLayoutGuide.trailingAnchor.constraint(
+        equalTo: contentStackView.trailingAnchor,
+        constant: DesignGuidelines.margins.right
+      ),
+
+      avatarImageView.widthAnchor
+        .constraint(equalToConstant: DesignGuidelines.avatarImageSize.width),
+      avatarImageView.heightAnchor
+        .constraint(equalToConstant: DesignGuidelines.avatarImageSize.height),
+    ])
+  }
+
+  private var spacerView: UIView {
+    let view = UIView()
+    view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+    return view
+  }
+}
+
+extension ProfileSummaryHeaderView {
+  struct ViewModel {
+    let avatarUrl: URL
+    let name: String
+    let username: String
+    let followersCount: Int
+    let followingCount: Int
+    let email: String?
+  }
+}
+
+extension ProfileSummaryHeaderView {
+  enum DesignGuidelines {
+    static let avatarImageSize = CGSize(width: 88.0, height: 88.0)
+    static let margins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
+
+    static let avatarLabelsSpacing: CGFloat = 8.0
+    static let userContentEmailSpacing: CGFloat = 24.0
+    static let emailFollowsSpacing: CGFloat = 16.0
+    static let followsLabelsSpacing: CGFloat = 16.0
+  }
+}
