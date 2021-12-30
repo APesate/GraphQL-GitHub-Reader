@@ -42,7 +42,12 @@ final class SectionHeader: UIView {
 
     actionButton.setTitleColor(.darkText, for: .normal)
     actionButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
-    actionButton.addBorders(edges: .bottom, color: .darkText, inset: 0.0, thickness: 2.0)
+    actionButton.addBorders(
+      edges: .bottom,
+      color: .darkText,
+      inset: DesignGuidelines.underlineInsets,
+      thickness: DesignGuidelines.underlineThickness
+    )
 
     contentStackView.axis = .horizontal
     contentStackView.alignment = .fill
@@ -82,5 +87,7 @@ extension SectionHeader {
 private extension SectionHeader {
   enum DesignGuidelines {
     static let contentSpacing: CGFloat = 8.0
+    static let underlineThickness: CGFloat = 2.0
+    static let underlineInsets: CGFloat = 0.0
   }
 }

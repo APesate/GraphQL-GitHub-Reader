@@ -16,8 +16,9 @@
 		FE892121277DC4740075B454 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892120277DC4740075B454 /* SectionHeader.swift */; };
 		FE892126277DCBA60075B454 /* VerticalShowcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892125277DCBA60075B454 /* VerticalShowcase.swift */; };
 		FE892128277DCF020075B454 /* ShortRepositoryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892127277DCF020075B454 /* ShortRepositoryInfoView.swift */; };
-		FE89212C277DDA200075B454 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89212B277DDA200075B454 /* UIColor+Hex.swift */; };
-		FE89212E277DE1A60075B454 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89212D277DE1A60075B454 /* UIView+Borders.swift */; };
+		FE892130277DE74F0075B454 /* HorizontalShowcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89212F277DE74F0075B454 /* HorizontalShowcase.swift */; };
+		FE892132277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892131277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift */; };
+		FE892136277DEBD20075B454 /* CommonUI in Frameworks */ = {isa = PBXBuildFile; productRef = FE892135277DEBD20075B454 /* CommonUI */; };
 		FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD902277CC3DC00F127B9 /* AppDelegate.swift */; };
 		FE9FD90C277CC3DE00F127B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90B277CC3DE00F127B9 /* Assets.xcassets */; };
 		FE9FD90F277CC3DE00F127B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90D277CC3DE00F127B9 /* LaunchScreen.storyboard */; };
@@ -53,8 +54,9 @@
 		FE892120277DC4740075B454 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FE892125277DCBA60075B454 /* VerticalShowcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalShowcase.swift; sourceTree = "<group>"; };
 		FE892127277DCF020075B454 /* ShortRepositoryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRepositoryInfoView.swift; sourceTree = "<group>"; };
-		FE89212B277DDA200075B454 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		FE89212D277DE1A60075B454 /* UIView+Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Borders.swift"; path = "../../../../../../../.Trash/UIView+Borders.swift"; sourceTree = "<group>"; };
+		FE89212F277DE74F0075B454 /* HorizontalShowcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalShowcase.swift; sourceTree = "<group>"; };
+		FE892131277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRepositoryInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE892133277DEBCA0075B454 /* CommonUI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CommonUI; sourceTree = "<group>"; };
 		FE9FD8FF277CC3DC00F127B9 /* GHPViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHPViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9FD902277CC3DC00F127B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE9FD90B277CC3DE00F127B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE1B2733277CF61600ECE29F /* GraphQLClient in Frameworks */,
+				FE892136277DEBD20075B454 /* CommonUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +99,7 @@
 		FE1B2708277CD16000ECE29F /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				FE892133277DEBCA0075B454 /* CommonUI */,
 				FE1B2731277CF4C000ECE29F /* GraphQLClient */,
 			);
 			name = Packages;
@@ -138,7 +142,6 @@
 		FE1B273A277D09E200ECE29F /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FE89212A277DDA160075B454 /* Utilities */,
 				FE1B2738277D098C00ECE29F /* AppDelegate */,
 				FE1B273B277D09E400ECE29F /* View */,
 			);
@@ -171,6 +174,8 @@
 				FE892120277DC4740075B454 /* SectionHeader.swift */,
 				FE892125277DCBA60075B454 /* VerticalShowcase.swift */,
 				FE892127277DCF020075B454 /* ShortRepositoryInfoView.swift */,
+				FE89212F277DE74F0075B454 /* HorizontalShowcase.swift */,
+				FE892131277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -183,13 +188,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		FE89212A277DDA160075B454 /* Utilities */ = {
+		FE892134277DEBD20075B454 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FE89212B277DDA200075B454 /* UIColor+Hex.swift */,
-				FE89212D277DE1A60075B454 /* UIView+Borders.swift */,
 			);
-			path = Utilities;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FE9FD8F6277CC3DC00F127B9 = {
@@ -200,6 +203,7 @@
 				FE9FD922277CC3DF00F127B9 /* GHPViewerUITests */,
 				FE1B2708277CD16000ECE29F /* Packages */,
 				FE9FD900277CC3DC00F127B9 /* Products */,
+				FE892134277DEBD20075B454 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,6 +263,7 @@
 			name = GHPViewer;
 			packageProductDependencies = (
 				FE1B2732277CF61600ECE29F /* GraphQLClient */,
+				FE892135277DEBD20075B454 /* CommonUI */,
 			);
 			productName = GHPViewer;
 			productReference = FE9FD8FF277CC3DC00F127B9 /* GHPViewer.app */;
@@ -377,14 +382,14 @@
 				FE1B2748277D106D00ECE29F /* Profile.swift in Sources */,
 				FE1B2736277CF6BB00ECE29F /* API.swift in Sources */,
 				FE1B2741277D0A3600ECE29F /* ProfileSummaryView.swift in Sources */,
+				FE892132277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift in Sources */,
 				FE892121277DC4740075B454 /* SectionHeader.swift in Sources */,
 				FE892128277DCF020075B454 /* ShortRepositoryInfoView.swift in Sources */,
 				FE1B2744277D0AA700ECE29F /* ProfileSummaryHeaderView.swift in Sources */,
-				FE89212E277DE1A60075B454 /* UIView+Borders.swift in Sources */,
+				FE892130277DE74F0075B454 /* HorizontalShowcase.swift in Sources */,
 				FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */,
 				FE1B273E277D0A1800ECE29F /* ProfileSummaryViewController.swift in Sources */,
 				FE892126277DCBA60075B454 /* VerticalShowcase.swift in Sources */,
-				FE89212C277DDA200075B454 /* UIColor+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +748,10 @@
 		FE1B2732277CF61600ECE29F /* GraphQLClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GraphQLClient;
+		};
+		FE892135277DEBD20075B454 /* CommonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommonUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -5,6 +5,7 @@
 //  Created by Andrés Pesate on 29/12/2021.
 //
 
+import CommonUI
 import UIKit
 
 final class ProfileSummaryHeaderView: UIView {
@@ -90,7 +91,7 @@ final class ProfileSummaryHeaderView: UIView {
 
   private func setupComponents() {
     avatarImageView.clipsToBounds = true
-    avatarImageView.layer.cornerRadius = DesignGuidelines.avatarImageSize.height / 2
+    avatarImageView.layer.cornerRadius = DesignGuidelines.avatarImageCornerRadius
 
     nameLabel.font = .systemFont(ofSize: 32, weight: .bold)
     nameLabel.textColor = .darkText
@@ -110,6 +111,7 @@ final class ProfileSummaryHeaderView: UIView {
     userContentLabelsStackView.axis = .vertical
     userContentLabelsStackView.alignment = .fill
     userContentLabelsStackView.distribution = .fill
+    userContentLabelsStackView.spacing = DesignGuidelines.userInfoSpacing
     [nameLabel, usernameLabel].forEach(userContentLabelsStackView.addArrangedSubview(_:))
 
     [avatarImageView, userContentLabelsStackView]
@@ -122,7 +124,7 @@ final class ProfileSummaryHeaderView: UIView {
       after: avatarImageView
     )
 
-    [followersLabel, followingLabel, spacerView]
+    [followersLabel, followingLabel, UIView.spacerView()]
       .forEach(followsStackView.addArrangedSubview(_:))
     followsStackView.axis = .horizontal
     followsStackView.alignment = .leading
@@ -174,13 +176,6 @@ final class ProfileSummaryHeaderView: UIView {
         .constraint(equalToConstant: DesignGuidelines.avatarImageSize.height),
     ])
   }
-
-  // TODO: Extract to a Common Package
-  private var spacerView: UIView {
-    let view = UIView()
-    view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-    return view
-  }
 }
 
 // MARK: - View Model
@@ -201,8 +196,10 @@ extension ProfileSummaryHeaderView {
 private extension ProfileSummaryHeaderView {
   enum DesignGuidelines {
     static let avatarImageSize = CGSize(width: 88.0, height: 88.0)
+    static let avatarImageCornerRadius: CGFloat = avatarImageSize.height / 2
     static let margins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
 
+    static let userInfoSpacing: CGFloat = 4.0
     static let avatarLabelsSpacing: CGFloat = 8.0
     static let userContentEmailSpacing: CGFloat = 24.0
     static let emailFollowsSpacing: CGFloat = 16.0

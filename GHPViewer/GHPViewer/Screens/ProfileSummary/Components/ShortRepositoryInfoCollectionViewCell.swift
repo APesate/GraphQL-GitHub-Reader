@@ -1,5 +1,5 @@
 //
-//  ShortRepositoryInfoView.swift
+//  ShortRepositoryInfoCollectionViewCell.swift
 //  GHPViewer
 //
 //  Created by Andrés Pesate on 30/12/2021.
@@ -8,7 +8,7 @@
 import CommonUI
 import UIKit
 
-final class ShortRepositoryInfoView: UIView {
+final class ShortRepositoryInfoCollectionViewCell: UICollectionViewCell {
   private let contentStackView = UIStackView()
   private let ownerInfoStackView = UIStackView()
   private let starsLanguageStackView = UIStackView()
@@ -23,11 +23,11 @@ final class ShortRepositoryInfoView: UIView {
   let starsCountLabel = UILabel()
   let mainLanguageLabel = UILabel()
 
-  init(model: ViewModel) {
-    super.init(frame: .zero)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+
     setupComponents()
     setupConstraints()
-    configure(with: model)
   }
 
   @available(*, unavailable)
@@ -57,6 +57,16 @@ final class ShortRepositoryInfoView: UIView {
     }
   }
 
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    ownerLabel.text = nil
+    repositoryTitleLabel.text = nil
+    repositoryDescriptionLabel.text = nil
+    starsCountLabel.text = nil
+    mainLanguageLabel.text = nil
+    mainLanguageView.backgroundColor = .clear
+  }
+
   // MARK: - Private
 
   // MARK: Views Setup
@@ -70,7 +80,7 @@ final class ShortRepositoryInfoView: UIView {
     avatarImageView.layer.cornerRadius = DesignGuidelines.avatarImageCornerRadius
 
     mainLanguageView.clipsToBounds = true
-    mainLanguageView.layer.cornerRadius = DesignGuidelines.mainLanguageColorViewRadius
+    mainLanguageView.layer.cornerRadius = DesignGuidelines.mainLanguageColorViewCornerRadius
 
     ownerLabel.font = .systemFont(ofSize: 16, weight: .regular)
     ownerLabel.textColor = .darkText
@@ -78,7 +88,7 @@ final class ShortRepositoryInfoView: UIView {
     repositoryTitleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
     repositoryTitleLabel.textColor = .darkText
 
-    // Number of lines capped at 1 to preserve consistency. Design didn't specify
+    // Number of lines kept in default `1` to preserve consistency. Design didn't specify
     repositoryDescriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
     repositoryDescriptionLabel.textColor = .darkText
 
@@ -124,12 +134,11 @@ final class ShortRepositoryInfoView: UIView {
       after: repositoryDescriptionLabel
     )
 
-    addSubview(contentStackView)
+    contentView.addSubview(contentStackView)
   }
 
   private func setupConstraints() {
-    [contentStackView, avatarImageView, starImageView, mainLanguageView]
-      .forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+    contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
     NSLayoutConstraint.activate([
       contentStackView.topAnchor.constraint(
@@ -169,8 +178,9 @@ final class ShortRepositoryInfoView: UIView {
 
 // MARK: - View Model
 
-extension ShortRepositoryInfoView {
-  struct ViewModel {
+extension ShortRepositoryInfoCollectionViewCell {
+  class ViewModel: Hashable {
+    let id = UUID()
     let avatarURL: URL
     let ownerName: String
     let repositoryTitle: String
@@ -178,19 +188,45 @@ extension ShortRepositoryInfoView {
     let starsCount: Int
     let mainLanguageName: String
     let mainLanguageColor: String
+
+    init(
+      avatarURL: URL,
+      ownerName: String,
+      repositoryTitle: String,
+      repositoryDescription: String,
+      starsCount: Int,
+      mainLanguageName: String,
+      mainLanguageColor: String
+    ) {
+      self.avatarURL = avatarURL
+      self.ownerName = ownerName
+      self.repositoryTitle = repositoryTitle
+      self.repositoryDescription = repositoryDescription
+      self.starsCount = starsCount
+      self.mainLanguageName = mainLanguageName
+      self.mainLanguageColor = mainLanguageColor
+    }
+
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+
+    static func == (lhs: ViewModel, rhs: ViewModel) -> Bool {
+      lhs.id == rhs.id
+    }
   }
 }
 
 // MARK: - Design Guidelines
 
-extension ShortRepositoryInfoView {
+extension ShortRepositoryInfoCollectionViewCell {
   enum DesignGuidelines {
     static let margins = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 28.0, right: 16.0)
     static let borderRadius: CGFloat = 8.0
     static let borderWidth: CGFloat = 1.0
     static let startImageSize = CGSize(width: 12.0, height: 12.0)
     static let mainLanguageColorViewSize = CGSize(width: 10.0, height: 10.0)
-    static let mainLanguageColorViewRadius: CGFloat = avatarImageSize.height / 2
+    static let mainLanguageColorViewCornerRadius: CGFloat = mainLanguageColorViewSize.height / 2
     static let avatarImageSize = CGSize(width: 32.0, height: 32.0)
     static let avatarImageCornerRadius: CGFloat = avatarImageSize.height / 2
 

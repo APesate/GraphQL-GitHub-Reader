@@ -12,6 +12,8 @@ final class ProfileSummaryView: UIView {
   private let contentStackView = UIStackView()
   private let headerView = ProfileSummaryHeaderView()
   private let pinnedRepositoriesView = VerticalShowcase()
+  private let topRepositoriesView = HorizontalShowcase()
+  private let starredRepositoriesView = HorizontalShowcase()
 
   init() {
     super.init(frame: .zero)
@@ -51,10 +53,60 @@ final class ProfileSummaryView: UIView {
         ]
       )
     )
+
+    topRepositoriesView.configure(
+      with:
+      HorizontalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(
+          sectionTitle: "Top repositories",
+          actionTitle: "View all"
+        ),
+        items: [
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+        ]
+      )
+    )
+
+    starredRepositoriesView.configure(
+      with:
+      HorizontalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(
+          sectionTitle: "Starred repositories",
+          actionTitle: "View all"
+        ),
+        items: [
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+          dummyCellRepo,
+        ]
+      )
+    )
   }
 
   var dummyRepo: ShortRepositoryInfoView.ViewModel {
     ShortRepositoryInfoView.ViewModel(
+      avatarURL: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
+      ownerName: "setaylor",
+      repositoryTitle: "telegraph-android",
+      repositoryDescription: "Telegraph X is Android client",
+      starsCount: 75,
+      mainLanguageName: "Swift",
+      mainLanguageColor: "#FFA036"
+    )
+  }
+
+  var dummyCellRepo: ShortRepositoryInfoCollectionViewCell.ViewModel {
+    ShortRepositoryInfoCollectionViewCell.ViewModel(
       avatarURL: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
       ownerName: "setaylor",
       repositoryTitle: "telegraph-android",
@@ -75,8 +127,9 @@ final class ProfileSummaryView: UIView {
     contentStackView.axis = .vertical
     contentStackView.alignment = .top
     contentStackView.distribution = .fill
-    [headerView, pinnedRepositoriesView].forEach(contentStackView.addArrangedSubview(_:))
-    contentStackView.setCustomSpacing(24, after: headerView)
+    [headerView, pinnedRepositoriesView, topRepositoriesView, starredRepositoriesView]
+      .forEach(contentStackView.addArrangedSubview(_:))
+    contentStackView.spacing = 24
 
     scrollView.addSubview(contentStackView)
     addSubview(scrollView)
@@ -98,6 +151,8 @@ final class ProfileSummaryView: UIView {
       scrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
 
       pinnedRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+      topRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+      starredRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
     ])
   }
 }
