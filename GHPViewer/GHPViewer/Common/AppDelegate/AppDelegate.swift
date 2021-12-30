@@ -9,11 +9,16 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let navigationController = UINavigationController(rootViewController: ProfileSummaryViewController())
+  func application(
+    _: UIApplication,
+    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    let navigationController = NavigationController(
+      rootViewController: ProfileSummaryBuilder()
+        .build()
+    )
 
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = navigationController
@@ -21,6 +26,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
-
 }
-

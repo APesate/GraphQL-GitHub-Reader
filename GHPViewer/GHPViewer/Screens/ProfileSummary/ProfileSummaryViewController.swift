@@ -7,17 +7,24 @@
 
 import UIKit
 
-final class ProfileSummaryViewController: UIViewController {
-  private var profileSummaryView: ProfileSummaryView! { view as? ProfileSummaryView }
+protocol ProfileSummaryViewProtocol: AnyObject {
+  func configure(with model: ProfileSummary)
+}
 
-  private let profile = Profile(
-    avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
-    name: "Andrés Pesate",
-    username: "APesate",
-    followersCount: 20,
-    followingCount: 14,
-    email: "andrespesate@gmail.com"
-  )
+final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewProtocol {
+  private var profileSummaryView: ProfileSummaryView! { view as? ProfileSummaryView }
+  private let presenter: ProfileSummaryPresenterProtocol
+
+  init(presenter: ProfileSummaryPresenterProtocol) {
+    self.presenter = presenter
+
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  @available(*, unavailable)
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func loadView() {
     view = ProfileSummaryView()
@@ -26,6 +33,14 @@ final class ProfileSummaryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Profile"
-    profileSummaryView.configure(with: profile)
+    presenter.viewDidLoad()
   }
+
+  // MARK: - Interface
+
+  func configure(with model: ProfileSummary) {
+    profileSummaryView.configure(with: model)
+  }
+
+  // MARK: - Private
 }

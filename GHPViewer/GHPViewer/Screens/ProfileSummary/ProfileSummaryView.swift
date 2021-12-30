@@ -29,85 +29,115 @@ final class ProfileSummaryView: UIView {
 
   // MARK: - Interface
 
-  func configure(with profile: Profile) {
+  func configure(with summary: ProfileSummary) {
     headerView.configure(
       with:
       ProfileSummaryHeaderView.ViewModel(
-        avatarUrl: profile.avatarUrl,
-        name: profile.name,
-        username: profile.username,
-        followersCount: profile.followersCount,
-        followingCount: profile.followingCount,
-        email: profile.email
+        avatarUrl: summary.user.avatarUrl,
+        name: summary.user.name,
+        username: summary.user.username,
+        followersCount: summary.user.followers.totalCount,
+        followingCount: summary.user.following.totalCount,
+        email: summary.user.email
       )
     )
 
-    pinnedRepositoriesView.configure(
-      with:
-      VerticalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(sectionTitle: "Pinned", actionTitle: "View all"),
-        items: [
-          dummyRepo,
-          dummyRepo,
-          dummyRepo,
-        ]
+    if let pinnedItems = summary.user.pinnedItems?.nodes,
+       !pinnedItems.isEmpty
+    {
+      let repositories =
+        pinnedItems
+          .map {
+            ShortRepositoryInfoView.ViewModel(
+              avatarUrl: $0.owner.avatarUrl,
+              ownerName: $0.owner.username,
+              repositoryTitle: $0.title,
+              repositoryDescription: $0.description,
+              starsCount: $0.starsCount,
+              mainLanguageName: $0.languages.mainLanguage,
+              mainLanguageColor: $0.languages.mainLanguageColor
+            )
+          }
+      pinnedRepositoriesView.configure(
+        with:
+        VerticalShowcase.ViewModel(
+          header: SectionHeader.ViewModel(
+            sectionTitle: "Pinned",
+            actionTitle: "View all"
+          ),
+          items: repositories
+        )
       )
-    )
+    } else {
+      pinnedRepositoriesView.isHidden = true
+    }
 
-    topRepositoriesView.configure(
-      with:
-      HorizontalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(
-          sectionTitle: "Top repositories",
-          actionTitle: "View all"
-        ),
-        items: [
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-        ]
+    if let topRepositories = summary.user.topRepositories?.nodes,
+       !topRepositories.isEmpty
+    {
+      let repositories =
+        topRepositories
+          .map {
+            ShortRepositoryInfoCollectionViewCell.ViewModel(
+              avatarUrl: $0.owner.avatarUrl,
+              ownerName: $0.owner.username,
+              repositoryTitle: $0.title,
+              repositoryDescription: $0.description,
+              starsCount: $0.starsCount,
+              mainLanguageName: $0.languages.mainLanguage,
+              mainLanguageColor: $0.languages.mainLanguageColor
+            )
+          }
+
+      topRepositoriesView.configure(
+        with:
+        HorizontalShowcase.ViewModel(
+          header: SectionHeader.ViewModel(
+            sectionTitle: "Top repositories",
+            actionTitle: "View all"
+          ),
+          items: repositories
+        )
       )
-    )
+    } else {
+      topRepositoriesView.isHidden = true
+    }
 
-    starredRepositoriesView.configure(
-      with:
-      HorizontalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(
-          sectionTitle: "Starred repositories",
-          actionTitle: "View all"
-        ),
-        items: [
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-          dummyCellRepo,
-        ]
+    if let starredRepositories = summary.user.starredRepositories?.nodes,
+       !starredRepositories.isEmpty
+    {
+      let repositories =
+        starredRepositories
+          .map {
+            ShortRepositoryInfoCollectionViewCell.ViewModel(
+              avatarUrl: $0.owner.avatarUrl,
+              ownerName: $0.owner.username,
+              repositoryTitle: $0.title,
+              repositoryDescription: $0.description,
+              starsCount: $0.starsCount,
+              mainLanguageName: $0.languages.mainLanguage,
+              mainLanguageColor: $0.languages.mainLanguageColor
+            )
+          }
+
+      starredRepositoriesView.configure(
+        with:
+        HorizontalShowcase.ViewModel(
+          header: SectionHeader.ViewModel(
+            sectionTitle: "Starred repositories",
+            actionTitle: "View all"
+          ),
+          items: repositories
+        )
       )
-    )
-  }
-
-  var dummyRepo: ShortRepositoryInfoView.ViewModel {
-    ShortRepositoryInfoView.ViewModel(
-      avatarURL: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
-      ownerName: "setaylor",
-      repositoryTitle: "telegraph-android",
-      repositoryDescription: "Telegraph X is Android client",
-      starsCount: 75,
-      mainLanguageName: "Swift",
-      mainLanguageColor: "#FFA036"
-    )
+    } else {
+      topRepositoriesView.isHidden = true
+    }
   }
 
   var dummyCellRepo: ShortRepositoryInfoCollectionViewCell.ViewModel {
     ShortRepositoryInfoCollectionViewCell.ViewModel(
-      avatarURL: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
+      avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
       ownerName: "setaylor",
       repositoryTitle: "telegraph-android",
       repositoryDescription: "Telegraph X is Android client",

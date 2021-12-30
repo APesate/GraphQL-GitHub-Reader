@@ -38,17 +38,21 @@ final class ShortRepositoryInfoView: UIView {
   // MARK: - Interface
 
   func configure(with model: ViewModel) {
-    loadImage(for: avatarImageView, from: model.avatarURL)
+    loadImage(for: avatarImageView, from: model.avatarUrl)
     ownerLabel.text = model.ownerName
     repositoryTitleLabel.text = model.repositoryTitle
     repositoryDescriptionLabel.text = model.repositoryDescription
     starsCountLabel.text = "\(model.starsCount)"
-    mainLanguageView.backgroundColor = UIColor(hex: model.mainLanguageColor) ?? .darkText
     mainLanguageLabel.text = model.mainLanguageName
+
+    if let color = model.mainLanguageColor {
+      mainLanguageView.backgroundColor = UIColor(hex: color) ?? .darkText
+    }
   }
 
   // TODO: Extract to a common place
-  private func loadImage(for imageView: UIImageView, from url: URL) {
+  private func loadImage(for imageView: UIImageView, from url: URL?) {
+    guard let url = url else { return }
     DispatchQueue.global().async {
       guard let data = try? Data(contentsOf: url) else { return }
       DispatchQueue.main.async {
@@ -171,13 +175,13 @@ final class ShortRepositoryInfoView: UIView {
 
 extension ShortRepositoryInfoView {
   struct ViewModel {
-    let avatarURL: URL
+    let avatarUrl: URL?
     let ownerName: String
     let repositoryTitle: String
-    let repositoryDescription: String
+    let repositoryDescription: String?
     let starsCount: Int
-    let mainLanguageName: String
-    let mainLanguageColor: String
+    let mainLanguageName: String?
+    let mainLanguageColor: String?
   }
 }
 
@@ -190,7 +194,7 @@ extension ShortRepositoryInfoView {
     static let borderWidth: CGFloat = 1.0
     static let startImageSize = CGSize(width: 12.0, height: 12.0)
     static let mainLanguageColorViewSize = CGSize(width: 10.0, height: 10.0)
-    static let mainLanguageColorViewRadius: CGFloat = avatarImageSize.height / 2
+    static let mainLanguageColorViewRadius: CGFloat = mainLanguageColorViewSize.height / 2
     static let avatarImageSize = CGSize(width: 32.0, height: 32.0)
     static let avatarImageCornerRadius: CGFloat = avatarImageSize.height / 2
 

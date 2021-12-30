@@ -38,17 +38,21 @@ final class ShortRepositoryInfoCollectionViewCell: UICollectionViewCell {
   // MARK: - Interface
 
   func configure(with model: ViewModel) {
-    loadImage(for: avatarImageView, from: model.avatarURL)
+    loadImage(for: avatarImageView, from: model.avatarUrl)
     ownerLabel.text = model.ownerName
     repositoryTitleLabel.text = model.repositoryTitle
     repositoryDescriptionLabel.text = model.repositoryDescription
     starsCountLabel.text = "\(model.starsCount)"
-    mainLanguageView.backgroundColor = UIColor(hex: model.mainLanguageColor) ?? .darkText
     mainLanguageLabel.text = model.mainLanguageName
+
+    if let color = model.mainLanguageColor {
+      mainLanguageView.backgroundColor = UIColor(hex: color) ?? .darkText
+    }
   }
 
   // TODO: Extract to a common place
-  private func loadImage(for imageView: UIImageView, from url: URL) {
+  private func loadImage(for imageView: UIImageView, from url: URL?) {
+    guard let url = url else { return }
     DispatchQueue.global().async {
       guard let data = try? Data(contentsOf: url) else { return }
       DispatchQueue.main.async {
@@ -181,24 +185,24 @@ final class ShortRepositoryInfoCollectionViewCell: UICollectionViewCell {
 extension ShortRepositoryInfoCollectionViewCell {
   class ViewModel: Hashable {
     let id = UUID()
-    let avatarURL: URL
+    let avatarUrl: URL?
     let ownerName: String
     let repositoryTitle: String
-    let repositoryDescription: String
+    let repositoryDescription: String?
     let starsCount: Int
-    let mainLanguageName: String
-    let mainLanguageColor: String
+    let mainLanguageName: String?
+    let mainLanguageColor: String?
 
     init(
-      avatarURL: URL,
+      avatarUrl: URL?,
       ownerName: String,
       repositoryTitle: String,
-      repositoryDescription: String,
+      repositoryDescription: String?,
       starsCount: Int,
-      mainLanguageName: String,
-      mainLanguageColor: String
+      mainLanguageName: String?,
+      mainLanguageColor: String?
     ) {
-      self.avatarURL = avatarURL
+      self.avatarUrl = avatarUrl
       self.ownerName = ownerName
       self.repositoryTitle = repositoryTitle
       self.repositoryDescription = repositoryDescription

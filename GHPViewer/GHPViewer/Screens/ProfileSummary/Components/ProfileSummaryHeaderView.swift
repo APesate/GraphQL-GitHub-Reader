@@ -78,7 +78,8 @@ final class ProfileSummaryHeaderView: UIView {
   }
 
   // TODO: Extract to a common place
-  private func loadImage(for imageView: UIImageView, from url: URL) {
+  private func loadImage(for imageView: UIImageView, from url: URL?) {
+    guard let url = url else { return }
     DispatchQueue.global().async {
       guard let data = try? Data(contentsOf: url) else { return }
       DispatchQueue.main.async {
@@ -182,7 +183,7 @@ final class ProfileSummaryHeaderView: UIView {
 
 extension ProfileSummaryHeaderView {
   struct ViewModel {
-    let avatarUrl: URL
+    let avatarUrl: URL?
     let name: String
     let username: String
     let followersCount: Int
