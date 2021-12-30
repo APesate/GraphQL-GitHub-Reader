@@ -18,19 +18,26 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   // MARK: - Interface
 
   func viewDidLoad() {
+    loadData()
+  }
+
+  func reloadData() {
+    loadData()
+  }
+
+  // MARK: - Private
+
+  private func loadData() {
     profileSummaryRepository.fetch { [weak self] result in
       guard let self = self else { return }
 
-      switch result {
-      case let .success(model):
+      do {
+        let model = try result.get()
         self.profileSummary = model
-        self.view?.configure(with: model)
-
-      case let .failure(error):
+        self.view?.didLoad(data: model)
+      } catch {
         print(error)
       }
     }
   }
-
-  // MARK: - Private
 }

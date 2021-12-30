@@ -26,7 +26,7 @@ final class ProfileSummaryRepository: ProfileSummaryRepositoryProtocol {
   func fetch(completionHandler: @escaping (Response) -> Void) {
     client
       .get(
-        query: ProfileSummaryQuery(username: "mattt"),
+        query: ProfileSummaryQuery(username: "apesate"),
         completionHandler: completionHandler
       )
   }

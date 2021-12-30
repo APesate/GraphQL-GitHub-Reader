@@ -9,4 +9,5 @@ protocol ProfileSummaryPresenterProtocol: AnyObject {
   var view: ProfileSummaryViewProtocol? { get set }
 
   func viewDidLoad()
+  func reloadData()
 }

@@ -25,15 +25,20 @@ final class VerticalShowcase: UIView {
   // MARK: - Interface
 
   func configure(with model: ViewModel) {
+    prepareForReuse()
     sectionHeader.configure(with: model.header)
 
     model
       .items
-      .map({ ShortRepositoryInfoView(model: $0) })
+      .map { ShortRepositoryInfoView(model: $0) }
       .forEach(contentStackView.addArrangedSubview(_:))
   }
 
   // MARK: - Private
+
+  private func prepareForReuse() {
+    contentStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+  }
 
   // MARK: Views Setup
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProfileSummaryViewProtocol: AnyObject {
-  func configure(with model: ProfileSummary)
+  func didLoad(data: ProfileSummary)
 }
 
 final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewProtocol {
@@ -32,15 +32,32 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Profile"
+    setupComponents()
     presenter.viewDidLoad()
   }
 
   // MARK: - Interface
 
-  func configure(with model: ProfileSummary) {
-    profileSummaryView.configure(with: model)
+  func didLoad(data: ProfileSummary) {
+    profileSummaryView.refreshControl.endRefreshing()
+    profileSummaryView.configure(with: data)
   }
 
   // MARK: - Private
+
+  private func setupComponents() {
+    title = "Profile"
+    
+    profileSummaryView.refreshControl.addTarget(
+      self,
+      action: #selector(didPullRefreshControl),
+      for: .valueChanged
+    )
+  }
+
+  // MARK: - Actions
+
+  @objc private func didPullRefreshControl() {
+    presenter.reloadData()
+  }
 }

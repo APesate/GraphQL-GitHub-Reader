@@ -8,6 +8,8 @@
 import UIKit
 
 final class ProfileSummaryView: UIView {
+  let refreshControl = UIRefreshControl()
+
   private let scrollView = UIScrollView()
   private let contentStackView = UIStackView()
   private let headerView = ProfileSummaryHeaderView()
@@ -153,6 +155,8 @@ final class ProfileSummaryView: UIView {
 
   private func setupComponents() {
     backgroundColor = .systemBackground
+
+    scrollView.refreshControl = refreshControl
 
     contentStackView.axis = .vertical
     contentStackView.alignment = .top
