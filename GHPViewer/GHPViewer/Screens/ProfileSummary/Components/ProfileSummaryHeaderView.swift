@@ -37,13 +37,19 @@ final class ProfileSummaryHeaderView: UIView {
   func configure(with model: ViewModel) {
     nameLabel.text = model.name
     usernameLabel.text = model.username
-    followersLabel.attributedText = attributedFollowsString(for: "followers", with: model.followersCount)
-    followingLabel.attributedText = attributedFollowsString(for: "following", with: model.followingCount)
+    followersLabel.attributedText = attributedFollowsString(
+      for: "followers",
+      with: model.followersCount
+    )
+    followingLabel.attributedText = attributedFollowsString(
+      for: "following",
+      with: model.followingCount
+    )
 
     emailLabel.text = model.email
     emailLabel.isHidden = model.email == nil || model.email?.isEmpty == true
 
-    loadImage(for: model)
+    loadImage(for: avatarImageView, from: model.avatarUrl)
   }
 
   // MARK: - Private
@@ -53,23 +59,29 @@ final class ProfileSummaryHeaderView: UIView {
     attributedString
       .append(.init(
         string: "\(count)",
-        attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .bold)]
+        attributes: [
+          .font: UIFont.systemFont(ofSize: 16, weight: .bold),
+          .foregroundColor: UIColor.darkText,
+        ]
       ))
     attributedString
       .append(.init(
         string: " \(string)",
-        attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .regular)]
+        attributes: [
+          .font: UIFont.systemFont(ofSize: 16, weight: .regular),
+          .foregroundColor: UIColor.darkText,
+        ]
       ))
 
     return attributedString
   }
 
-  private func loadImage(for model: ViewModel) {
+  // TODO: Extract to a common place
+  private func loadImage(for imageView: UIImageView, from url: URL) {
     DispatchQueue.global().async {
-      guard let data = try? Data(contentsOf: model.avatarUrl) else { return }
-      DispatchQueue.main.async { [weak self] in
-        guard let self = self else { return }
-        self.avatarImageView.image = UIImage(data: data)
+      guard let data = try? Data(contentsOf: url) else { return }
+      DispatchQueue.main.async {
+        imageView.image = UIImage(data: data)
       }
     }
   }
@@ -140,18 +152,18 @@ final class ProfileSummaryHeaderView: UIView {
 
     NSLayoutConstraint.activate([
       contentStackView.topAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.topAnchor,
+        equalTo: topAnchor,
         constant: DesignGuidelines.margins.top
       ),
       contentStackView.leadingAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.leadingAnchor,
+        equalTo: leadingAnchor,
         constant: DesignGuidelines.margins.left
       ),
-      safeAreaLayoutGuide.bottomAnchor.constraint(
+      bottomAnchor.constraint(
         equalTo: contentStackView.bottomAnchor,
         constant: DesignGuidelines.margins.bottom
       ),
-      safeAreaLayoutGuide.trailingAnchor.constraint(
+      trailingAnchor.constraint(
         equalTo: contentStackView.trailingAnchor,
         constant: DesignGuidelines.margins.right
       ),
@@ -163,12 +175,15 @@ final class ProfileSummaryHeaderView: UIView {
     ])
   }
 
+  // TODO: Extract to a Common Package
   private var spacerView: UIView {
     let view = UIView()
     view.setContentHuggingPriority(.defaultLow, for: .horizontal)
     return view
   }
 }
+
+// MARK: - View Model
 
 extension ProfileSummaryHeaderView {
   struct ViewModel {
@@ -181,7 +196,9 @@ extension ProfileSummaryHeaderView {
   }
 }
 
-extension ProfileSummaryHeaderView {
+// MARK: - Design Guidelines
+
+private extension ProfileSummaryHeaderView {
   enum DesignGuidelines {
     static let avatarImageSize = CGSize(width: 88.0, height: 88.0)
     static let margins = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)

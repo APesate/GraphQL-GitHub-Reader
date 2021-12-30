@@ -8,8 +8,10 @@
 import UIKit
 
 final class ProfileSummaryView: UIView {
+  private let scrollView = UIScrollView()
   private let contentStackView = UIStackView()
   private let headerView = ProfileSummaryHeaderView()
+  private let pinnedRepositoriesView = VerticalShowcase()
 
   init() {
     super.init(frame: .zero)
@@ -37,6 +39,30 @@ final class ProfileSummaryView: UIView {
         email: profile.email
       )
     )
+
+    pinnedRepositoriesView.configure(
+      with:
+      VerticalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(sectionTitle: "Pinned", actionTitle: "View all"),
+        items: [
+          dummyRepo,
+          dummyRepo,
+          dummyRepo,
+        ]
+      )
+    )
+  }
+
+  var dummyRepo: ShortRepositoryInfoView.ViewModel {
+    ShortRepositoryInfoView.ViewModel(
+      avatarURL: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
+      ownerName: "setaylor",
+      repositoryTitle: "telegraph-android",
+      repositoryDescription: "Telegraph X is Android client",
+      starsCount: 75,
+      mainLanguageName: "Swift",
+      mainLanguageColor: "#FFA036"
+    )
   }
 
   // MARK: - Private
@@ -44,22 +70,34 @@ final class ProfileSummaryView: UIView {
   // MARK: Views Setup
 
   private func setupComponents() {
-    backgroundColor = .white
-    
-    contentStackView.axis = .vertical
-    contentStackView.alignment = .fill
-    contentStackView.distribution = .fill
+    backgroundColor = .systemBackground
 
-    addSubview(headerView)
+    contentStackView.axis = .vertical
+    contentStackView.alignment = .top
+    contentStackView.distribution = .fill
+    [headerView, pinnedRepositoriesView].forEach(contentStackView.addArrangedSubview(_:))
+    contentStackView.setCustomSpacing(24, after: headerView)
+
+    scrollView.addSubview(contentStackView)
+    addSubview(scrollView)
   }
 
   private func setupConstraints() {
-    headerView.translatesAutoresizingMaskIntoConstraints = false
+    [scrollView, contentStackView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
 
     NSLayoutConstraint.activate([
-      headerView.topAnchor.constraint(equalTo: topAnchor),
-      headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      scrollView.topAnchor.constraint(equalTo: topAnchor),
+      scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+      contentStackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+      contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+      contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
+
+      pinnedRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
     ])
   }
 }
