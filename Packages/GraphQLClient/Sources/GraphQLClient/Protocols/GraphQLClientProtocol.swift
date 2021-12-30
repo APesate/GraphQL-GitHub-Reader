@@ -6,10 +6,11 @@
 //
 
 import protocol Apollo.GraphQLQuery
+import struct Apollo.GraphQLResult
 
 public protocol GraphQLClientProtocol {
-  func get<Query: GraphQLQuery, Response: Decodable>(
+  func get<Query: GraphQLQuery, Response: Codable>(
     query: Query,
-    completionHandler: @escaping (Result<Response?, Error>) -> Void
+    completionHandler: @escaping (Result<Response, Error>) -> Void
   )
 }
