@@ -13,11 +13,19 @@ import protocol Apollo.InterceptorProvider
 import protocol Apollo.NetworkTransport
 import class Apollo.RequestChainNetworkTransport
 import class Apollo.URLSessionClient
+import ApolloSQLite
+import Foundation
 
 struct ApolloClientBuilder {
+  private let cacheBuilder: CacheBuilder
+
+  init(cacheBuilder: CacheBuilder = .init()) {
+    self.cacheBuilder = cacheBuilder
+  }
+
   func client(for service: Service) -> ApolloClientProtocol {
     let store = self.store()
-    let urlClient = self.urlClient()
+    let urlClient = self.urlSessionClient()
     let interceptorProvider = self.interceptorProvider(
       with: urlClient,
       store: store
@@ -34,10 +42,10 @@ struct ApolloClientBuilder {
   }
 
   private func store() -> ApolloStore {
-    .init()
+    ApolloStore(cache: cacheBuilder.build())
   }
 
-  private func urlClient() -> URLSessionClient {
+  private func urlSessionClient() -> URLSessionClient {
     .init()
   }
 

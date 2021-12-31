@@ -10,6 +10,8 @@ import protocol GraphQLClient.Service
 
 struct GitHubService: Service {
   var url = URL(string: "https://api.github.com/graphql")!
+
+  // TODO: This token should be kept secret. Keeping here for simplicity.
   var additionalHeaders: [String: String]? =
     ["Authorization": "Bearer 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"]
 }

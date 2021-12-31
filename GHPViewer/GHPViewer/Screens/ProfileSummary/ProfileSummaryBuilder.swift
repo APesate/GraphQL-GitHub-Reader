@@ -10,6 +10,9 @@ import struct GraphQLClient.GraphQLClientBuilder
 import protocol GraphQLClient.GraphQLClientProtocol
 
 final class ProfileSummaryBuilder {
+  // Format: Days * Hours * Minutes * Seconds
+  private static let OneDayInSeconds: TimeInterval = 1 * 24 * 60 * 60
+
   func build() -> ProfileSummaryViewController {
     let presenter = self.presenter()
     let view = ProfileSummaryViewController(presenter: presenter)
@@ -28,6 +31,11 @@ final class ProfileSummaryBuilder {
 
   private func client() -> GraphQLClientProtocol {
     let service = GitHubService()
-    return GraphQLClientBuilder().client(for: service)
+    return GraphQLClientBuilder()
+      .client(
+        for: service,
+        // TODO: This value could be moved to a configuration file
+        cachePolicy: .maxAge(seconds: Self.OneDayInSeconds)
+      )
   }
 }

@@ -20,10 +20,12 @@ public class GraphQLClient: GraphQLClientProtocol {
 
   private let service: Service
   private let client: ApolloClientProtocol
+  private let cachePolice: CachePoliceProtocol
 
-  public init(service: Service, client: ApolloClientProtocol) {
+  public init(service: Service, client: ApolloClientProtocol, cachePolice: CachePoliceProtocol) {
     self.service = service
     self.client = client
+    self.cachePolice = cachePolice
   }
 
   // MARK: - Interface
@@ -32,8 +34,11 @@ public class GraphQLClient: GraphQLClientProtocol {
     query: Query,
     completionHandler: @escaping (Result<Response, Swift.Error>) -> Void
   ) {
+    resetCacheIfNeeded()
+
     _ = client.fetch(
       query: query,
+      // TODO: Might not be the best option. Needs rethinking. Could we check the headers against the server?
       cachePolicy: .returnCacheDataElseFetch,
       contextIdentifier: UUID(),
       queue: .main
@@ -42,6 +47,7 @@ public class GraphQLClient: GraphQLClientProtocol {
         completionHandler(.failure(Error.serviceError))
         return
       }
+      self.cachePolice.didUpdateCache()
 
       do {
         let parsedData: Response = try self.parseResponse(result: data)
@@ -53,6 +59,14 @@ public class GraphQLClient: GraphQLClientProtocol {
   }
 
   // MARK: - Private
+
+  private func resetCacheIfNeeded() {
+    guard !cachePolice.isCacheValid else {
+      return
+    }
+
+    client.store.clearCache()
+  }
 
   // TODO: This could be extracted into its own object and injected as dependency to the client
   private func parseResponse<
