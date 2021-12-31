@@ -28,8 +28,11 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   // MARK: - Private
 
   private func loadData() {
+    view?.isLoading = true
+
     profileSummaryRepository.fetch { [weak self] result in
       guard let self = self else { return }
+      self.view?.isLoading = false
 
       do {
         let model = try result.get()

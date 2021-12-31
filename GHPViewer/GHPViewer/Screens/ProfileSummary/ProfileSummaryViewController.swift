@@ -8,10 +8,17 @@
 import UIKit
 
 protocol ProfileSummaryViewProtocol: AnyObject {
+  var isLoading: Bool { get set }
+
   func didLoad(data: ProfileSummary)
 }
 
 final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewProtocol {
+  private struct ViewState {
+    var wasConfigured: Bool = false
+  }
+
+  private var viewState: ViewState = .init()
   private var profileSummaryView: ProfileSummaryView! { view as? ProfileSummaryView }
   private let presenter: ProfileSummaryPresenterProtocol
 
@@ -38,9 +45,18 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
 
   // MARK: - Interface
 
+  var isLoading: Bool = false {
+    didSet {
+      isLoading ?
+        profileSummaryView.refreshControl.beginRefreshing() :
+        profileSummaryView.refreshControl.endRefreshing()
+    }
+  }
+
   // TODO: This could be sliced into several function per view component if needed. Keeping it together for simplicity.
   func didLoad(data: ProfileSummary) {
-    profileSummaryView.refreshControl.endRefreshing()
+    viewState.wasConfigured = true
+    profileSummaryView.hideComponents(!viewState.wasConfigured, animated: true)
     profileSummaryView.configure(with: data)
   }
 
@@ -48,12 +64,13 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
 
   private func setupComponents() {
     title = "Profile"
-    
+
     profileSummaryView.refreshControl.addTarget(
       self,
       action: #selector(didPullRefreshControl),
       for: .valueChanged
     )
+    profileSummaryView.hideComponents(true)
   }
 
   // MARK: - Actions

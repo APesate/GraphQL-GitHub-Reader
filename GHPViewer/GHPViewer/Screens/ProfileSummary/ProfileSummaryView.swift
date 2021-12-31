@@ -31,6 +31,19 @@ final class ProfileSummaryView: UIView {
 
   // MARK: - Interface
 
+  func hideComponents(_ value: Bool, animated: Bool = false) {
+    UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak self] in
+      guard let self = self else { return }
+      [
+        self.headerView,
+        self.pinnedRepositoriesView,
+        self.topRepositoriesView,
+        self.starredRepositoriesView,
+      ]
+        .forEach { $0.alpha = value ? 0.0 : 1.0 }
+    }
+  }
+
   func configure(with summary: ProfileSummary) {
     configureHeaderView(with: summary)
     configurePinnedView(with: summary)
