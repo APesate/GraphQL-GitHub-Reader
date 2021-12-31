@@ -12,12 +12,6 @@ import protocol Apollo.GraphQLSelectionSet
 import Foundation
 
 public class GraphQLClient: GraphQLClientProtocol {
-  enum Error: Swift.Error {
-    case failedToParseResponse
-    case serviceError
-    case noData
-  }
-
   private let service: Service
   private let client: ApolloClientProtocol
   private let cachePolice: CachePoliceProtocol
@@ -38,16 +32,21 @@ public class GraphQLClient: GraphQLClientProtocol {
 
     _ = client.fetch(
       query: query,
-      // TODO: Might not be the best option. Needs rethinking. Could we check the headers against the server?
       cachePolicy: .returnCacheDataElseFetch,
       contextIdentifier: UUID(),
       queue: .main
     ) { [weak self] result in
-      guard let self = self, let data = try? result.get().data else {
-        completionHandler(.failure(Error.serviceError))
+      guard let self = self,
+            let result = try? result.get(),
+            let data = result.data
+      else {
+        completionHandler(.failure(GraphQLClientError.serviceError))
         return
       }
-      self.cachePolice.didUpdateCache()
+
+      if result.source == .server {
+        self.cachePolice.didUpdateCache()
+      }
 
       do {
         let parsedData: Response = try self.parseResponse(result: data)
@@ -73,7 +72,7 @@ public class GraphQLClient: GraphQLClientProtocol {
     Response: Codable
   >(result: GraphQLSelectionSet?) throws -> Response {
     guard let result = result else {
-      throw Error.noData
+      throw GraphQLClientError.noData
     }
 
     do {
@@ -83,7 +82,7 @@ public class GraphQLClient: GraphQLClientProtocol {
       )
       return try JSONDecoder().decode(Response.self, from: jsonData)
     } catch {
-      throw Error.failedToParseResponse
+      throw GraphQLClientError.failedToParseResponse
     }
   }
 }

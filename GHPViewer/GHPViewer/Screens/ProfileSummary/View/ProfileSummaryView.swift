@@ -5,10 +5,12 @@
 //  Created by Andrés Pesate on 29/12/2021.
 //
 
+import CommonUI
 import UIKit
 
-final class ProfileSummaryView: UIView {
+final class ProfileSummaryView: UIView, ErrorStateable {
   let refreshControl = UIRefreshControl()
+  lazy var errorView = ErrorView()
 
   private let scrollView = UIScrollView()
   private let contentStackView = UIStackView()
@@ -40,7 +42,7 @@ final class ProfileSummaryView: UIView {
         self.topRepositoriesView,
         self.starredRepositoriesView,
       ]
-        .forEach { $0.alpha = value ? 0.0 : 1.0 }
+      .forEach { $0.alpha = value ? 0.0 : 1.0 }
     }
   }
 

@@ -5,9 +5,11 @@
 //  Created by Andrés Pesate on 30/12/2021.
 //
 
+import enum GraphQLClient.GraphQLClientError
+
 final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   weak var view: ProfileSummaryViewProtocol?
-
+  
   private let profileSummaryRepository: ProfileSummaryRepositoryProtocol
   private var profileSummary: ProfileSummary?
 
@@ -38,8 +40,10 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
         let model = try result.get()
         self.profileSummary = model
         self.view?.didLoad(data: model)
+      } catch GraphQLClientError.noData {
+        self.view?.didFail(with: .accountNotFound)
       } catch {
-        print(error)
+        self.view?.didFail(with: .somethingWentWrong)
       }
     }
   }

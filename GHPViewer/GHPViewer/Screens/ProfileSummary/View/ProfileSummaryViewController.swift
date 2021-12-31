@@ -5,20 +5,10 @@
 //  Created by Andrés Pesate on 29/12/2021.
 //
 
+import CommonUI
 import UIKit
 
-protocol ProfileSummaryViewProtocol: AnyObject {
-  var isLoading: Bool { get set }
-
-  func didLoad(data: ProfileSummary)
-}
-
 final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewProtocol {
-  private struct ViewState {
-    var wasConfigured: Bool = false
-  }
-
-  private var viewState: ViewState = .init()
   private var profileSummaryView: ProfileSummaryView! { view as? ProfileSummaryView }
   private let presenter: ProfileSummaryPresenterProtocol
 
@@ -53,10 +43,35 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
     }
   }
 
+  func didFail(with error: ProfileSummaryViewError) {
+    profileSummaryView.hideComponents(true, animated: true)
+
+    switch error {
+    case .accountNotFound:
+      profileSummaryView
+        .set(
+          errorModel:
+          ErrorView.Model(
+            icon: UIImage(named: "error_404"),
+            description: "Account not found."
+          )
+        )
+    case .somethingWentWrong:
+      profileSummaryView
+        .set(
+          errorModel:
+          ErrorView.Model(
+            icon: UIImage(named: "error_warning"),
+            description: "Something went wrong."
+          )
+        )
+    }
+  }
+
   // TODO: This could be sliced into several function per view component if needed. Keeping it together for simplicity.
   func didLoad(data: ProfileSummary) {
-    viewState.wasConfigured = true
-    profileSummaryView.hideComponents(!viewState.wasConfigured, animated: true)
+    profileSummaryView.set(errorModel: nil)
+    profileSummaryView.hideComponents(false, animated: true)
     profileSummaryView.configure(with: data)
   }
 
