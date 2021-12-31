@@ -38,6 +38,7 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
 
   // MARK: - Interface
 
+  // TODO: This could be sliced into several function per view component if needed. Keeping it together for simplicity.
   func didLoad(data: ProfileSummary) {
     profileSummaryView.refreshControl.endRefreshing()
     profileSummaryView.configure(with: data)

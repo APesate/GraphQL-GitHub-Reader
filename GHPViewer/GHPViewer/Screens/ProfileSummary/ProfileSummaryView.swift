@@ -32,121 +32,10 @@ final class ProfileSummaryView: UIView {
   // MARK: - Interface
 
   func configure(with summary: ProfileSummary) {
-    headerView.configure(
-      with:
-      ProfileSummaryHeaderView.ViewModel(
-        avatarUrl: summary.user.avatarUrl,
-        name: summary.user.name,
-        username: summary.user.username,
-        followersCount: summary.user.followers.totalCount,
-        followingCount: summary.user.following.totalCount,
-        email: summary.user.email
-      )
-    )
-
-    if let pinnedItems = summary.user.pinnedItems?.nodes,
-       !pinnedItems.isEmpty
-    {
-      let repositories =
-        pinnedItems
-          .map {
-            ShortRepositoryInfoView.ViewModel(
-              avatarUrl: $0.owner.avatarUrl,
-              ownerName: $0.owner.username,
-              repositoryTitle: $0.title,
-              repositoryDescription: $0.description,
-              starsCount: $0.starsCount,
-              mainLanguageName: $0.languages.mainLanguage,
-              mainLanguageColor: $0.languages.mainLanguageColor
-            )
-          }
-      pinnedRepositoriesView.configure(
-        with:
-        VerticalShowcase.ViewModel(
-          header: SectionHeader.ViewModel(
-            sectionTitle: "Pinned",
-            actionTitle: "View all"
-          ),
-          items: repositories
-        )
-      )
-    } else {
-      pinnedRepositoriesView.isHidden = true
-    }
-
-    if let topRepositories = summary.user.topRepositories?.nodes,
-       !topRepositories.isEmpty
-    {
-      let repositories =
-        topRepositories
-          .map {
-            ShortRepositoryInfoCollectionViewCell.ViewModel(
-              avatarUrl: $0.owner.avatarUrl,
-              ownerName: $0.owner.username,
-              repositoryTitle: $0.title,
-              repositoryDescription: $0.description,
-              starsCount: $0.starsCount,
-              mainLanguageName: $0.languages.mainLanguage,
-              mainLanguageColor: $0.languages.mainLanguageColor
-            )
-          }
-
-      topRepositoriesView.configure(
-        with:
-        HorizontalShowcase.ViewModel(
-          header: SectionHeader.ViewModel(
-            sectionTitle: "Top repositories",
-            actionTitle: "View all"
-          ),
-          items: repositories
-        )
-      )
-    } else {
-      topRepositoriesView.isHidden = true
-    }
-
-    if let starredRepositories = summary.user.starredRepositories?.nodes,
-       !starredRepositories.isEmpty
-    {
-      let repositories =
-        starredRepositories
-          .map {
-            ShortRepositoryInfoCollectionViewCell.ViewModel(
-              avatarUrl: $0.owner.avatarUrl,
-              ownerName: $0.owner.username,
-              repositoryTitle: $0.title,
-              repositoryDescription: $0.description,
-              starsCount: $0.starsCount,
-              mainLanguageName: $0.languages.mainLanguage,
-              mainLanguageColor: $0.languages.mainLanguageColor
-            )
-          }
-
-      starredRepositoriesView.configure(
-        with:
-        HorizontalShowcase.ViewModel(
-          header: SectionHeader.ViewModel(
-            sectionTitle: "Starred repositories",
-            actionTitle: "View all"
-          ),
-          items: repositories
-        )
-      )
-    } else {
-      topRepositoriesView.isHidden = true
-    }
-  }
-
-  var dummyCellRepo: ShortRepositoryInfoCollectionViewCell.ViewModel {
-    ShortRepositoryInfoCollectionViewCell.ViewModel(
-      avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/4807617?v=4")!,
-      ownerName: "setaylor",
-      repositoryTitle: "telegraph-android",
-      repositoryDescription: "Telegraph X is Android client",
-      starsCount: 75,
-      mainLanguageName: "Swift",
-      mainLanguageColor: "#FFA036"
-    )
+    configureHeaderView(with: summary)
+    configurePinnedView(with: summary)
+    configureTopRepositoriesView(with: summary)
+    configureStarredView(with: summary)
   }
 
   // MARK: - Private
@@ -188,5 +77,125 @@ final class ProfileSummaryView: UIView {
       topRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
       starredRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
     ])
+  }
+}
+
+// MARK: - View Configuration
+
+private extension ProfileSummaryView {
+  func configureHeaderView(with summary: ProfileSummary) {
+    headerView.configure(
+      with:
+      ProfileSummaryHeaderView.ViewModel(
+        avatarUrl: summary.user.avatarUrl,
+        name: summary.user.name,
+        username: summary.user.username,
+        followersCount: summary.user.followers.totalCount,
+        followingCount: summary.user.following.totalCount,
+        email: summary.user.email
+      )
+    )
+  }
+
+  func configurePinnedView(with summary: ProfileSummary) {
+    guard let pinnedItems = summary.user.pinnedItems?.nodes,
+          !pinnedItems.isEmpty
+    else {
+      pinnedRepositoriesView.isHidden = true
+      return
+    }
+
+    let repositories =
+      pinnedItems
+        .map {
+          ShortRepositoryInfoView.ViewModel(
+            avatarUrl: $0.owner.avatarUrl,
+            ownerName: $0.owner.username,
+            repositoryTitle: $0.title,
+            repositoryDescription: $0.description,
+            starsCount: $0.starsCount,
+            mainLanguageName: $0.languages.mainLanguage,
+            mainLanguageColor: $0.languages.mainLanguageColor
+          )
+        }
+
+    pinnedRepositoriesView.configure(
+      with:
+      VerticalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(
+          sectionTitle: "Pinned",
+          actionTitle: "View all"
+        ),
+        items: repositories
+      )
+    )
+  }
+
+  func configureTopRepositoriesView(with summary: ProfileSummary) {
+    guard let topRepositories = summary.user.topRepositories?.nodes,
+          !topRepositories.isEmpty
+    else {
+      topRepositoriesView.isHidden = true
+      return
+    }
+
+    let repositories =
+      topRepositories
+        .map {
+          ShortRepositoryInfoCollectionViewCell.ViewModel(
+            avatarUrl: $0.owner.avatarUrl,
+            ownerName: $0.owner.username,
+            repositoryTitle: $0.title,
+            repositoryDescription: $0.description,
+            starsCount: $0.starsCount,
+            mainLanguageName: $0.languages.mainLanguage,
+            mainLanguageColor: $0.languages.mainLanguageColor
+          )
+        }
+
+    topRepositoriesView.configure(
+      with:
+      HorizontalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(
+          sectionTitle: "Top repositories",
+          actionTitle: "View all"
+        ),
+        items: repositories
+      )
+    )
+  }
+
+  func configureStarredView(with summary: ProfileSummary) {
+    guard let starredRepositories = summary.user.starredRepositories?.nodes,
+          !starredRepositories.isEmpty
+    else {
+      starredRepositoriesView.isHidden = true
+      return
+    }
+
+    let repositories =
+      starredRepositories
+        .map {
+          ShortRepositoryInfoCollectionViewCell.ViewModel(
+            avatarUrl: $0.owner.avatarUrl,
+            ownerName: $0.owner.username,
+            repositoryTitle: $0.title,
+            repositoryDescription: $0.description,
+            starsCount: $0.starsCount,
+            mainLanguageName: $0.languages.mainLanguage,
+            mainLanguageColor: $0.languages.mainLanguageColor
+          )
+        }
+
+    starredRepositoriesView.configure(
+      with:
+      HorizontalShowcase.ViewModel(
+        header: SectionHeader.ViewModel(
+          sectionTitle: "Starred repositories",
+          actionTitle: "View all"
+        ),
+        items: repositories
+      )
+    )
   }
 }
