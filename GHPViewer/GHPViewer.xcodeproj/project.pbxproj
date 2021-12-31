@@ -19,7 +19,6 @@
 		FE892132277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892131277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift */; };
 		FE892136277DEBD20075B454 /* CommonUI in Frameworks */ = {isa = PBXBuildFile; productRef = FE892135277DEBD20075B454 /* CommonUI */; };
 		FE892138277DFC230075B454 /* ProfileSummaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892137277DFC230075B454 /* ProfileSummaryPresenter.swift */; };
-		FE89213A277DFC400075B454 /* ProfileSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892139277DFC400075B454 /* ProfileSummaryViewModel.swift */; };
 		FE89213D277DFC770075B454 /* ProfileSummaryPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89213C277DFC770075B454 /* ProfileSummaryPresenterProtocol.swift */; };
 		FE892140277E1C080075B454 /* ProfileSummaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89213F277E1C080075B454 /* ProfileSummaryRepository.swift */; };
 		FE892143277E1D290075B454 /* ProfileSummaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE892142277E1D290075B454 /* ProfileSummaryBuilder.swift */; };
@@ -64,7 +63,6 @@
 		FE892131277DEA450075B454 /* ShortRepositoryInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRepositoryInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE892133277DEBCA0075B454 /* CommonUI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CommonUI; sourceTree = "<group>"; };
 		FE892137277DFC230075B454 /* ProfileSummaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryPresenter.swift; sourceTree = "<group>"; };
-		FE892139277DFC400075B454 /* ProfileSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewModel.swift; sourceTree = "<group>"; };
 		FE89213C277DFC770075B454 /* ProfileSummaryPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryPresenterProtocol.swift; sourceTree = "<group>"; };
 		FE89213F277E1C080075B454 /* ProfileSummaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepository.swift; sourceTree = "<group>"; };
 		FE892142277E1D290075B454 /* ProfileSummaryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryBuilder.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				FE1B2742277D0A8E00ECE29F /* Components */,
 				FE1B2740277D0A3600ECE29F /* ProfileSummaryView.swift */,
 				FE1B273D277D0A1800ECE29F /* ProfileSummaryViewController.swift */,
-				FE892139277DFC400075B454 /* ProfileSummaryViewModel.swift */,
 				FE892142277E1D290075B454 /* ProfileSummaryBuilder.swift */,
 			);
 			path = ProfileSummary;
@@ -446,7 +443,6 @@
 				FE892143277E1D290075B454 /* ProfileSummaryBuilder.swift in Sources */,
 				FE89214A277E221B0075B454 /* NavigationController.swift in Sources */,
 				FE892126277DCBA60075B454 /* VerticalShowcase.swift in Sources */,
-				FE89213A277DFC400075B454 /* ProfileSummaryViewModel.swift in Sources */,
 				FE892146277E1FFC0075B454 /* GitHubService.swift in Sources */,
 				FE89214C277E279B0075B454 /* ProfileSummary.swift in Sources */,
 				FE892138277DFC230075B454 /* ProfileSummaryPresenter.swift in Sources */,
