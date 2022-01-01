@@ -51,12 +51,10 @@ final class ProfileSummaryHeaderView: UIView {
     emailLabel.isHidden = model.email == nil || model.email?.isEmpty == true
 
     if let url = model.avatarUrl {
-      if let url = model.avatarUrl {
-        avatarImageView.setImage(
-          from: url,
-          placeholder: UIImage(named: "avatar-placeholder")
-        )
-      }
+      avatarImageView.setImage(
+        from: url,
+        placeholder: UIImage(named: "avatar-placeholder")
+      )
     }
   }
 

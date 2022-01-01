@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +14,81 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GHPViewer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyr-Hg-QlN">
+                                <rect key="frame" x="121.5" y="434" width="171.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Octocat-MagnifyingGlass" translatesAutoresizingMaskIntoConstraints="NO" id="X0M-Ga-rmD">
+                                <rect key="frame" x="117" y="246" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Usg-vE-YcF"/>
+                                    <constraint firstAttribute="height" constant="180" id="ixf-T7-Q5u"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5S-Ug-2Pa">
+                                <rect key="frame" x="157.5" y="748.5" width="99.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wkL-UQ-nJq">
+                                <rect key="frame" x="101" y="778" width="212" height="60"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="octocat" translatesAutoresizingMaskIntoConstraints="NO" id="9EG-SO-dSs">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="kyU-Rb-3x1"/>
+                                            <constraint firstAttribute="height" constant="60" id="rUU-w4-j3G"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphql-logo" translatesAutoresizingMaskIntoConstraints="NO" id="DVQ-Vu-LTx">
+                                        <rect key="frame" x="76" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="X5C-Wa-dLK"/>
+                                            <constraint firstAttribute="height" constant="60" id="au2-Oc-pCX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apollo-logo" translatesAutoresizingMaskIntoConstraints="NO" id="48Q-NO-d4J">
+                                        <rect key="frame" x="152" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Uoi-Ws-Dfl"/>
+                                            <constraint firstAttribute="width" constant="60" id="sDR-rV-Fh7"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qyr-Hg-QlN" firstAttribute="centerX" secondItem="X0M-Ga-rmD" secondAttribute="centerX" id="3vR-jl-7x9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wkL-UQ-nJq" secondAttribute="bottom" constant="24" id="T52-1c-3dv"/>
+                            <constraint firstItem="Qyr-Hg-QlN" firstAttribute="top" secondItem="X0M-Ga-rmD" secondAttribute="bottom" constant="8" symbolic="YES" id="aEo-nK-rTl"/>
+                            <constraint firstItem="Qyr-Hg-QlN" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="cNc-9W-bCO"/>
+                            <constraint firstItem="R5S-Ug-2Pa" firstAttribute="centerX" secondItem="wkL-UQ-nJq" secondAttribute="centerX" id="eBf-Pq-UMK"/>
+                            <constraint firstItem="R5S-Ug-2Pa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iym-Ih-TTc"/>
+                            <constraint firstItem="X0M-Ga-rmD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qsw-GD-FQU"/>
+                            <constraint firstItem="wkL-UQ-nJq" firstAttribute="top" secondItem="R5S-Ug-2Pa" secondAttribute="bottom" constant="8" id="xpD-rc-gf4"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Octocat-MagnifyingGlass" width="800" height="665"/>
+        <image name="apollo-logo" width="600" height="600"/>
+        <image name="graphql-logo" width="2048" height="2048"/>
+        <image name="octocat" width="800" height="665"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
