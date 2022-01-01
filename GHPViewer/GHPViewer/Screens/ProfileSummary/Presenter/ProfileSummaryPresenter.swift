@@ -9,7 +9,7 @@ import enum GraphQLClient.GraphQLClientError
 
 final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   weak var view: ProfileSummaryViewProtocol?
-  
+
   private let profileSummaryRepository: ProfileSummaryRepositoryProtocol
   private var profileSummary: ProfileSummary?
 
@@ -32,7 +32,8 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   private func loadData() {
     view?.isLoading = true
 
-    profileSummaryRepository.fetch { [weak self] result in
+    // TODO: Username should be a dynamic value.
+    profileSummaryRepository.fetch(user: "apesate") { [weak self] result in
       guard let self = self else { return }
       self.view?.isLoading = false
 

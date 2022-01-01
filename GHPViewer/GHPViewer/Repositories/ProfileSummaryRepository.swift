@@ -5,14 +5,7 @@
 //  Created by Andrés Pesate on 30/12/2021.
 //
 
-import Foundation
 import protocol GraphQLClient.GraphQLClientProtocol
-
-protocol ProfileSummaryRepositoryProtocol {
-  typealias Response = Result<ProfileSummary, Error>
-
-  func fetch(completionHandler: @escaping (Response) -> Void)
-}
 
 final class ProfileSummaryRepository: ProfileSummaryRepositoryProtocol {
   private let client: GraphQLClientProtocol
@@ -23,11 +16,18 @@ final class ProfileSummaryRepository: ProfileSummaryRepositoryProtocol {
 
   // MARK: - Interface
 
-  func fetch(completionHandler: @escaping (Response) -> Void) {
+  func fetch(user username: String, completionHandler: @escaping (Response) -> Void) {
+    let query = self.query(for: username)
     client
       .get(
-        query: ProfileSummaryQuery(username: "apesate"),
+        query: query,
         completionHandler: completionHandler
       )
+  }
+
+  // MARK: - Private
+
+  private func query(for username: String) -> ProfileSummaryQuery {
+    .init(username: username)
   }
 }

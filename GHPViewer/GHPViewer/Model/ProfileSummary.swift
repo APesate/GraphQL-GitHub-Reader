@@ -11,12 +11,12 @@ import Foundation
 
 // MARK: - ProfileSummary
 
-struct ProfileSummary: Codable {
+struct ProfileSummary: Codable, Equatable {
   let user: User
 
   // MARK: - User
 
-  struct User: Codable {
+  struct User: Codable, Equatable {
     let avatarStringUrl: String
     let name: String
     let username: String
@@ -48,19 +48,19 @@ struct ProfileSummary: Codable {
 
   // MARK: - Follow
 
-  struct Follow: Codable {
+  struct Follow: Codable, Equatable {
     let totalCount: Int
   }
 
   // MARK: - Repositories
 
-  struct Repositories: Codable {
+  struct Repositories: Codable, Equatable {
     let nodes: [Repository]
   }
 
   // MARK: - Repository
 
-  struct Repository: Codable {
+  struct Repository: Codable, Equatable {
     let owner: Owner
     let title: String
     let description: String?
@@ -78,7 +78,7 @@ struct ProfileSummary: Codable {
 
   // MARK: - Languages
 
-  struct Languages: Codable {
+  struct Languages: Codable, Equatable {
     let nodes: [Language]
 
     // MARK: Convenience
@@ -94,14 +94,14 @@ struct ProfileSummary: Codable {
 
   // MARK: - LanguagesNode
 
-  struct Language: Codable {
+  struct Language: Codable, Equatable {
     let name: String
     let color: String
   }
 
   // MARK: - Owner
 
-  struct Owner: Codable {
+  struct Owner: Codable, Equatable {
     let username: String
     let avatarStringUrl: String
 

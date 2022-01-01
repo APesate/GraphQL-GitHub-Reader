@@ -33,9 +33,12 @@
 		FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD902277CC3DC00F127B9 /* AppDelegate.swift */; };
 		FE9FD90C277CC3DE00F127B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90B277CC3DE00F127B9 /* Assets.xcassets */; };
 		FE9FD90F277CC3DE00F127B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90D277CC3DE00F127B9 /* LaunchScreen.storyboard */; };
-		FE9FD91A277CC3DF00F127B9 /* GHPViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD919277CC3DF00F127B9 /* GHPViewerTests.swift */; };
 		FE9FD924277CC3DF00F127B9 /* GHPViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD923277CC3DF00F127B9 /* GHPViewerUITests.swift */; };
 		FE9FD926277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */; };
+		FEC0EFCF2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFCE2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift */; };
+		FEC0EFD12780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */; };
+		FEC0EFD42780E1E2002B1E80 /* GraphQLClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */; };
+		FEC0EFD92780E86A002B1E80 /* MockingHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = FEC0EFD82780E86A002B1E80 /* MockingHelpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +87,13 @@
 		FE9FD90E277CC3DE00F127B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE9FD910277CC3DE00F127B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE9FD915277CC3DF00F127B9 /* GHPViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHPViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE9FD919277CC3DF00F127B9 /* GHPViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHPViewerTests.swift; sourceTree = "<group>"; };
 		FE9FD91F277CC3DF00F127B9 /* GHPViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHPViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9FD923277CC3DF00F127B9 /* GHPViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHPViewerUITests.swift; sourceTree = "<group>"; };
 		FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHPViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FEC0EFCE2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryTests.swift; sourceTree = "<group>"; };
+		FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClientStub.swift; sourceTree = "<group>"; };
+		FEC0EFD52780E244002B1E80 /* MockingHelpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MockingHelpers; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE5223B4278092D6000D59CA /* Kingfisher in Frameworks */,
+				FEC0EFD92780E86A002B1E80 /* MockingHelpers in Frameworks */,
 				FE1B2733277CF61600ECE29F /* GraphQLClient in Frameworks */,
 				FE892136277DEBD20075B454 /* CommonUI in Frameworks */,
 			);
@@ -121,6 +128,7 @@
 		FE1B2708277CD16000ECE29F /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				FEC0EFD52780E244002B1E80 /* MockingHelpers */,
 				FE892133277DEBCA0075B454 /* CommonUI */,
 				FE1B2731277CF4C000ECE29F /* GraphQLClient */,
 			);
@@ -259,6 +267,7 @@
 		FE89213E277DFCEC0075B454 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */,
 				FE89213F277E1C080075B454 /* ProfileSummaryRepository.swift */,
 			);
 			path = Repositories;
@@ -319,7 +328,8 @@
 		FE9FD918277CC3DF00F127B9 /* GHPViewerTests */ = {
 			isa = PBXGroup;
 			children = (
-				FE9FD919277CC3DF00F127B9 /* GHPViewerTests.swift */,
+				FEC0EFD22780E1D2002B1E80 /* TestDoubles */,
+				FEC0EFCA2780E119002B1E80 /* Repositories */,
 			);
 			path = GHPViewerTests;
 			sourceTree = "<group>";
@@ -331,6 +341,22 @@
 				FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */,
 			);
 			path = GHPViewerUITests;
+			sourceTree = "<group>";
+		};
+		FEC0EFCA2780E119002B1E80 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FEC0EFCE2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FEC0EFD22780E1D2002B1E80 /* TestDoubles */ = {
+			isa = PBXGroup;
+			children = (
+				FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */,
+			);
+			path = TestDoubles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +379,7 @@
 				FE1B2732277CF61600ECE29F /* GraphQLClient */,
 				FE892135277DEBD20075B454 /* CommonUI */,
 				FE5223B3278092D6000D59CA /* Kingfisher */,
+				FEC0EFD82780E86A002B1E80 /* MockingHelpers */,
 			);
 			productName = GHPViewer;
 			productReference = FE9FD8FF277CC3DC00F127B9 /* GHPViewer.app */;
@@ -409,6 +436,7 @@
 					};
 					FE9FD914277CC3DF00F127B9 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 						TestTargetID = FE9FD8FE277CC3DC00F127B9;
 					};
 					FE9FD91E277CC3DF00F127B9 = {
@@ -483,6 +511,7 @@
 				FE52234B277F6255000D59CA /* ProfileSummaryViewError.swift in Sources */,
 				FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */,
 				FE89213D277DFC770075B454 /* ProfileSummaryPresenterProtocol.swift in Sources */,
+				FEC0EFD12780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift in Sources */,
 				FE892140277E1C080075B454 /* ProfileSummaryRepository.swift in Sources */,
 				FE1B273E277D0A1800ECE29F /* ProfileSummaryViewController.swift in Sources */,
 				FE892143277E1D290075B454 /* ProfileSummaryBuilder.swift in Sources */,
@@ -499,7 +528,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE9FD91A277CC3DF00F127B9 /* GHPViewerTests.swift in Sources */,
+				FEC0EFD42780E1E2002B1E80 /* GraphQLClientStub.swift in Sources */,
+				FEC0EFCF2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +744,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PBJAETU4UU;
@@ -728,6 +759,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pesate.GHPViewerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GHPViewer.app/GHPViewer";
@@ -739,6 +771,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PBJAETU4UU;
@@ -870,6 +903,10 @@
 		FE892135277DEBD20075B454 /* CommonUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CommonUI;
+		};
+		FEC0EFD82780E86A002B1E80 /* MockingHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MockingHelpers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
