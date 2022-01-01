@@ -15,11 +15,13 @@ public class GraphQLClient: GraphQLClientProtocol {
   private let service: Service
   private let client: ApolloClientProtocol
   private let cachePolice: CachePoliceProtocol
+  private let responseParser: ResponseParserProtocol
 
-  public init(service: Service, client: ApolloClientProtocol, cachePolice: CachePoliceProtocol) {
+  public init(service: Service, client: ApolloClientProtocol, cachePolice: CachePoliceProtocol, responseParser: ResponseParserProtocol) {
     self.service = service
     self.client = client
     self.cachePolice = cachePolice
+    self.responseParser = responseParser
   }
 
   // MARK: - Interface
@@ -49,7 +51,7 @@ public class GraphQLClient: GraphQLClientProtocol {
       }
 
       do {
-        let parsedData: Response = try self.parseResponse(result: data)
+        let parsedData: Response = try self.responseParser.parse(result: data)
         completionHandler(.success(parsedData))
       } catch {
         completionHandler(.failure(error))
@@ -64,25 +66,6 @@ public class GraphQLClient: GraphQLClientProtocol {
       return
     }
 
-    client.store.clearCache()
-  }
-
-  // TODO: This could be extracted into its own object and injected as dependency to the client
-  private func parseResponse<
-    Response: Codable
-  >(result: GraphQLSelectionSet?) throws -> Response {
-    guard let result = result else {
-      throw GraphQLClientError.noData
-    }
-
-    do {
-      let jsonData = try JSONSerialization.data(
-        withJSONObject: result.jsonObject,
-        options: .fragmentsAllowed
-      )
-      return try JSONDecoder().decode(Response.self, from: jsonData)
-    } catch {
-      throw GraphQLClientError.failedToParseResponse
-    }
+    client.clearCache(callbackQueue: .main, completion: nil)
   }
 }

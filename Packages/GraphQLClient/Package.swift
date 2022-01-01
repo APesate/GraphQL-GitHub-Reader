@@ -19,6 +19,7 @@ let package = Package(
       url: "https://github.com/apollographql/apollo-ios.git",
       from: Version("0.50.0")
     ),
+    .package(name: "MockingHelpers", path: "./../MockingHelpers"),
   ],
   targets: [
     .target(
@@ -30,7 +31,7 @@ let package = Package(
     ),
     .testTarget(
       name: "GraphQLClientTests",
-      dependencies: ["GraphQLClient"]
+      dependencies: ["GraphQLClient", "MockingHelpers"]
     ),
   ]
 )

@@ -17,7 +17,8 @@ public struct GraphQLClientBuilder {
     return GraphQLClient(
       service: service,
       client: apolloClient,
-      cachePolice: cachePolice(cachePolicy: cachePolicy)
+      cachePolice: cachePolice(cachePolicy: cachePolicy),
+      responseParser: responseParser()
     )
   }
 
@@ -30,5 +31,9 @@ public struct GraphQLClientBuilder {
 
   private func userDefaults() -> UserDefaultsProtocol {
     UserDefaults.standard
+  }
+
+  private func responseParser() -> ResponseParserProtocol {
+    ResponseParser()
   }
 }
