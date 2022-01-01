@@ -42,10 +42,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE9FD91E277CC3DF00F127B9"
-               BuildableName = "GHPViewerUITests.xctest"
-               BlueprintName = "GHPViewerUITests"
-               ReferencedContainer = "container:GHPViewer.xcodeproj">
+               BlueprintIdentifier = "GraphQLClientTests"
+               BuildableName = "GraphQLClientTests"
+               BlueprintName = "GraphQLClientTests"
+               ReferencedContainer = "container:../Packages/GraphQLClient">
             </BuildableReference>
          </TestableReference>
       </Testables>

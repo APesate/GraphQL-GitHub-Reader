@@ -34,8 +34,6 @@
 		FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD902277CC3DC00F127B9 /* AppDelegate.swift */; };
 		FE9FD90C277CC3DE00F127B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90B277CC3DE00F127B9 /* Assets.xcassets */; };
 		FE9FD90F277CC3DE00F127B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9FD90D277CC3DE00F127B9 /* LaunchScreen.storyboard */; };
-		FE9FD924277CC3DF00F127B9 /* GHPViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD923277CC3DF00F127B9 /* GHPViewerUITests.swift */; };
-		FE9FD926277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */; };
 		FEC0EFCF2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFCE2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift */; };
 		FEC0EFD12780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */; };
 		FEC0EFD42780E1E2002B1E80 /* GraphQLClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */; };
@@ -47,13 +45,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		FE9FD916277CC3DF00F127B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FE9FD8F7277CC3DC00F127B9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE9FD8FE277CC3DC00F127B9;
-			remoteInfo = GHPViewer;
-		};
-		FE9FD920277CC3DF00F127B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FE9FD8F7277CC3DC00F127B9 /* Project object */;
 			proxyType = 1;
@@ -93,9 +84,6 @@
 		FE9FD90E277CC3DE00F127B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE9FD910277CC3DE00F127B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE9FD915277CC3DF00F127B9 /* GHPViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHPViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE9FD91F277CC3DF00F127B9 /* GHPViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHPViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE9FD923277CC3DF00F127B9 /* GHPViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHPViewerUITests.swift; sourceTree = "<group>"; };
-		FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHPViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FEC0EFCE2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryTests.swift; sourceTree = "<group>"; };
 		FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClientStub.swift; sourceTree = "<group>"; };
@@ -118,13 +106,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FE9FD912277CC3DF00F127B9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE9FD91C277CC3DF00F127B9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,6 +181,7 @@
 		FE1B273C277D09FF00ECE29F /* ProfileSummary */ = {
 			isa = PBXGroup;
 			children = (
+				FE1B2746277D105D00ECE29F /* Model */,
 				FE522349277F6247000D59CA /* View */,
 				FE89213B277DFC5F0075B454 /* Presenter */,
 				FE1B2742277D0A8E00ECE29F /* Components */,
@@ -304,7 +286,6 @@
 			children = (
 				FE9FD901277CC3DC00F127B9 /* GHPViewer */,
 				FE9FD918277CC3DF00F127B9 /* GHPViewerTests */,
-				FE9FD922277CC3DF00F127B9 /* GHPViewerUITests */,
 				FE1B2708277CD16000ECE29F /* Packages */,
 				FE9FD900277CC3DC00F127B9 /* Products */,
 				FE892134277DEBD20075B454 /* Frameworks */,
@@ -316,7 +297,6 @@
 			children = (
 				FE9FD8FF277CC3DC00F127B9 /* GHPViewer.app */,
 				FE9FD915277CC3DF00F127B9 /* GHPViewerTests.xctest */,
-				FE9FD91F277CC3DF00F127B9 /* GHPViewerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,7 +307,6 @@
 				FE1B273A277D09E200ECE29F /* Common */,
 				FE1B2739277D09A900ECE29F /* Screens */,
 				FE89213E277DFCEC0075B454 /* Repositories */,
-				FE1B2746277D105D00ECE29F /* Model */,
 				FE1B2734277CF6BB00ECE29F /* Service */,
 				FE1B2737277D097A00ECE29F /* SupportingFiles */,
 				FE522348277F5B85000D59CA /* Resources */,
@@ -343,15 +322,6 @@
 				FEC0EFCA2780E119002B1E80 /* Repositories */,
 			);
 			path = GHPViewerTests;
-			sourceTree = "<group>";
-		};
-		FE9FD922277CC3DF00F127B9 /* GHPViewerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FE9FD923277CC3DF00F127B9 /* GHPViewerUITests.swift */,
-				FE9FD925277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift */,
-			);
-			path = GHPViewerUITests;
 			sourceTree = "<group>";
 		};
 		FEC0EFCA2780E119002B1E80 /* Repositories */ = {
@@ -424,24 +394,6 @@
 			productReference = FE9FD915277CC3DF00F127B9 /* GHPViewerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FE9FD91E277CC3DF00F127B9 /* GHPViewerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FE9FD92F277CC3DF00F127B9 /* Build configuration list for PBXNativeTarget "GHPViewerUITests" */;
-			buildPhases = (
-				FE9FD91B277CC3DF00F127B9 /* Sources */,
-				FE9FD91C277CC3DF00F127B9 /* Frameworks */,
-				FE9FD91D277CC3DF00F127B9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FE9FD921277CC3DF00F127B9 /* PBXTargetDependency */,
-			);
-			name = GHPViewerUITests;
-			productName = GHPViewerUITests;
-			productReference = FE9FD91F277CC3DF00F127B9 /* GHPViewerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -458,10 +410,6 @@
 					FE9FD914277CC3DF00F127B9 = {
 						CreatedOnToolsVersion = 13.1;
 						LastSwiftMigration = 1310;
-						TestTargetID = FE9FD8FE277CC3DC00F127B9;
-					};
-					FE9FD91E277CC3DF00F127B9 = {
-						CreatedOnToolsVersion = 13.1;
 						TestTargetID = FE9FD8FE277CC3DC00F127B9;
 					};
 				};
@@ -485,7 +433,6 @@
 			targets = (
 				FE9FD8FE277CC3DC00F127B9 /* GHPViewer */,
 				FE9FD914277CC3DF00F127B9 /* GHPViewerTests */,
-				FE9FD91E277CC3DF00F127B9 /* GHPViewerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -502,13 +449,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FE9FD913277CC3DF00F127B9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE9FD91D277CC3DF00F127B9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -559,15 +499,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FE9FD91B277CC3DF00F127B9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FE9FD926277CC3DF00F127B9 /* GHPViewerUITestsLaunchTests.swift in Sources */,
-				FE9FD924277CC3DF00F127B9 /* GHPViewerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -575,11 +506,6 @@
 			isa = PBXTargetDependency;
 			target = FE9FD8FE277CC3DC00F127B9 /* GHPViewer */;
 			targetProxy = FE9FD916277CC3DF00F127B9 /* PBXContainerItemProxy */;
-		};
-		FE9FD921277CC3DF00F127B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FE9FD8FE277CC3DC00F127B9 /* GHPViewer */;
-			targetProxy = FE9FD920277CC3DF00F127B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -831,52 +757,6 @@
 			};
 			name = Release;
 		};
-		FE9FD930277CC3DF00F127B9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBJAETU4UU;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pesate.GHPViewerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GHPViewer;
-			};
-			name = Debug;
-		};
-		FE9FD931277CC3DF00F127B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBJAETU4UU;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pesate.GHPViewerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GHPViewer;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -903,15 +783,6 @@
 			buildConfigurations = (
 				FE9FD92D277CC3DF00F127B9 /* Debug */,
 				FE9FD92E277CC3DF00F127B9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FE9FD92F277CC3DF00F127B9 /* Build configuration list for PBXNativeTarget "GHPViewerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE9FD930277CC3DF00F127B9 /* Debug */,
-				FE9FD931277CC3DF00F127B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
