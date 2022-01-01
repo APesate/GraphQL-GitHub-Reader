@@ -48,6 +48,7 @@ Once the token has been set to the additional headers of the service, the applic
 - ❒ Allow the user to view all the items in a section. (Pinned, Top and Starred Items)
 - ❒ Allow the user to see the details of an item.
 - ❒ Add support for pinned Gists.
+- ❒ Improve cache to not depend on Apollo for it. Currently it has several limitations that compromise the functionality of the app.
 
 ------
 
