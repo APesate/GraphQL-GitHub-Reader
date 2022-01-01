@@ -14,7 +14,6 @@ final class ShortRepositoryInfoView: UIView {
   private let starsLanguageStackView = UIStackView()
 
   private let starImageView = UIImageView()
-  private let mainLanguageView = UIView()
 
   let avatarImageView = UIImageView()
   let ownerLabel = UILabel()
@@ -22,6 +21,13 @@ final class ShortRepositoryInfoView: UIView {
   let repositoryDescriptionLabel = UILabel()
   let starsCountLabel = UILabel()
   let mainLanguageLabel = UILabel()
+  let mainLanguageView = UIView()
+
+  init() {
+    super.init(frame: .zero)
+    setupComponents()
+    setupConstraints()
+  }
 
   init(model: ViewModel) {
     super.init(frame: .zero)
@@ -169,7 +175,8 @@ final class ShortRepositoryInfoView: UIView {
 // MARK: - View Model
 
 extension ShortRepositoryInfoView {
-  struct ViewModel {
+  struct ViewModel: Hashable {
+    let id = UUID()
     let avatarUrl: URL?
     let ownerName: String
     let repositoryTitle: String

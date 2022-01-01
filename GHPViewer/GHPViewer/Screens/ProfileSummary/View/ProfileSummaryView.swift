@@ -157,7 +157,7 @@ private extension ProfileSummaryView {
     let repositories =
       topRepositories
         .map {
-          ShortRepositoryInfoCollectionViewCell.ViewModel(
+          ShortRepositoryInfoView.ViewModel(
             avatarUrl: $0.owner.avatarUrl,
             ownerName: $0.owner.username,
             repositoryTitle: $0.title,
@@ -191,7 +191,7 @@ private extension ProfileSummaryView {
     let repositories =
       starredRepositories
         .map {
-          ShortRepositoryInfoCollectionViewCell.ViewModel(
+          ShortRepositoryInfoView.ViewModel(
             avatarUrl: $0.owner.avatarUrl,
             ownerName: $0.owner.username,
             repositoryTitle: $0.title,

@@ -63,7 +63,7 @@ final class HorizontalShowcase: UIView {
   }
 
   func applySnapshot(
-    for items: [ShortRepositoryInfoCollectionViewCell.ViewModel],
+    for items: [ShortRepositoryInfoView.ViewModel],
     animatingDifferences: Bool = true
   ) {
     var snapshot = Snapshot()
@@ -119,7 +119,7 @@ final class HorizontalShowcase: UIView {
 extension HorizontalShowcase {
   struct ViewModel {
     let header: SectionHeader.ViewModel
-    let items: [ShortRepositoryInfoCollectionViewCell.ViewModel]
+    let items: [ShortRepositoryInfoView.ViewModel]
   }
 }
 
@@ -128,11 +128,11 @@ extension HorizontalShowcase {
 private extension HorizontalShowcase {
   typealias DataSource = UICollectionViewDiffableDataSource<
     Section,
-    ShortRepositoryInfoCollectionViewCell.ViewModel
+    ShortRepositoryInfoView.ViewModel
   >
   typealias Snapshot = NSDiffableDataSourceSnapshot<
     Section,
-    ShortRepositoryInfoCollectionViewCell.ViewModel
+    ShortRepositoryInfoView.ViewModel
   >
 
   enum Section {
