@@ -7,7 +7,7 @@
 
 import protocol Apollo.GraphQLQuery
 import protocol GraphQLClient.GraphQLClientProtocol
-import MockingHelpers
+import struct MockingHelpers.FunctionSpy
 
 final class GraphQLClientStub: GraphQLClientProtocol {
   private(set) var getSpy = FunctionSpy<Void, Void>()

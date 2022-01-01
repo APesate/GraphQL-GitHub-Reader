@@ -5,7 +5,18 @@
 //  Created by Andrés Pesate on 31/12/2021.
 //
 
-enum ProfileSummaryViewError: Error {
+enum ProfileSummaryViewError: Error, Equatable {
   case accountNotFound
   case somethingWentWrong
+
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    switch (lhs, rhs) {
+    case (.accountNotFound, .accountNotFound):
+      return true
+    case (.somethingWentWrong, .somethingWentWrong):
+      return true
+    default:
+      return false
+    }
+  }
 }

@@ -11,7 +11,7 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
   weak var view: ProfileSummaryViewProtocol?
 
   private let profileSummaryRepository: ProfileSummaryRepositoryProtocol
-  private var profileSummary: ProfileSummary?
+  private(set) var profileSummary: ProfileSummary?
 
   init(profileSummaryRepository: ProfileSummaryRepositoryProtocol) {
     self.profileSummaryRepository = profileSummaryRepository

@@ -39,6 +39,9 @@
 		FEC0EFD12780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */; };
 		FEC0EFD42780E1E2002B1E80 /* GraphQLClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */; };
 		FEC0EFD92780E86A002B1E80 /* MockingHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = FEC0EFD82780E86A002B1E80 /* MockingHelpers */; };
+		FEC0EFDC2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDB2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift */; };
+		FEC0EFDE2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */; };
+		FEC0EFE02780EBE4002B1E80 /* ProfileSummaryViewStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		FEC0EFD02780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClientStub.swift; sourceTree = "<group>"; };
 		FEC0EFD52780E244002B1E80 /* MockingHelpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MockingHelpers; sourceTree = "<group>"; };
+		FEC0EFDB2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryPresenterTests.swift; sourceTree = "<group>"; };
+		FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryStub.swift; sourceTree = "<group>"; };
+		FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,10 +246,10 @@
 		FE522349277F6247000D59CA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE52234C277F6262000D59CA /* ProfileSummaryViewProtocol.swift */,
 				FE1B2740277D0A3600ECE29F /* ProfileSummaryView.swift */,
 				FE1B273D277D0A1800ECE29F /* ProfileSummaryViewController.swift */,
 				FE52234A277F6255000D59CA /* ProfileSummaryViewError.swift */,
-				FE52234C277F6262000D59CA /* ProfileSummaryViewProtocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				FEC0EFD22780E1D2002B1E80 /* TestDoubles */,
+				FEC0EFDA2780E8CF002B1E80 /* Presenter */,
 				FEC0EFCA2780E119002B1E80 /* Repositories */,
 			);
 			path = GHPViewerTests;
@@ -355,8 +362,18 @@
 			isa = PBXGroup;
 			children = (
 				FEC0EFD32780E1E2002B1E80 /* GraphQLClientStub.swift */,
+				FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */,
+				FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */,
 			);
 			path = TestDoubles;
+			sourceTree = "<group>";
+		};
+		FEC0EFDA2780E8CF002B1E80 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FEC0EFDB2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,7 +546,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEC0EFD42780E1E2002B1E80 /* GraphQLClientStub.swift in Sources */,
+				FEC0EFE02780EBE4002B1E80 /* ProfileSummaryViewStub.swift in Sources */,
 				FEC0EFCF2780E165002B1E80 /* ProfileSummaryRepositoryTests.swift in Sources */,
+				FEC0EFDE2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift in Sources */,
+				FEC0EFDC2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
