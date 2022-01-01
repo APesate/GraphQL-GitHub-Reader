@@ -26,6 +26,12 @@ public class GraphQLClient: GraphQLClientProtocol {
 
   // MARK: - Interface
 
+  /// Use this function to execute a GraphQLQuery.
+  ///
+  /// - Parameter query: The GraphQL query to execute.
+  /// - Parameter completionHandler: The function will execute this closure on the main thread and provide back either the parsed server response in the form of the required object, or an error of the type `GraphQLClientError`.
+  ///
+  /// - Note: This function checks if the cache is valid on every execution, in case of the cache becoming invalid it will clear it before performing the request.
   public func get<Query: GraphQLQuery, Response: Codable>(
     query: Query,
     completionHandler: @escaping (Result<Response, Swift.Error>) -> Void
