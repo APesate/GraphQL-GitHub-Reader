@@ -50,7 +50,14 @@ final class ProfileSummaryHeaderView: UIView {
     emailLabel.text = model.email
     emailLabel.isHidden = model.email == nil || model.email?.isEmpty == true
 
-    loadImage(for: avatarImageView, from: model.avatarUrl)
+    if let url = model.avatarUrl {
+      if let url = model.avatarUrl {
+        avatarImageView.setImage(
+          from: url,
+          placeholder: UIImage(named: "avatar-placeholder")
+        )
+      }
+    }
   }
 
   // MARK: - Private
@@ -62,7 +69,7 @@ final class ProfileSummaryHeaderView: UIView {
         string: "\(count)",
         attributes: [
           .font: UIFont.systemFont(ofSize: 16, weight: .bold),
-          .foregroundColor: UIColor.darkText,
+          .foregroundColor: UIColor.label,
         ]
       ))
     attributedString
@@ -70,22 +77,11 @@ final class ProfileSummaryHeaderView: UIView {
         string: " \(string)",
         attributes: [
           .font: UIFont.systemFont(ofSize: 16, weight: .regular),
-          .foregroundColor: UIColor.darkText,
+          .foregroundColor: UIColor.label,
         ]
       ))
 
     return attributedString
-  }
-
-  // TODO: Extract to a common place
-  private func loadImage(for imageView: UIImageView, from url: URL?) {
-    guard let url = url else { return }
-    DispatchQueue.global().async {
-      guard let data = try? Data(contentsOf: url) else { return }
-      DispatchQueue.main.async {
-        imageView.image = UIImage(data: data)
-      }
-    }
   }
 
   // MARK: Views Setup
@@ -95,19 +91,19 @@ final class ProfileSummaryHeaderView: UIView {
     avatarImageView.layer.cornerRadius = DesignGuidelines.avatarImageCornerRadius
 
     nameLabel.font = .systemFont(ofSize: 32, weight: .bold)
-    nameLabel.textColor = .darkText
+    nameLabel.textColor = .label
 
     usernameLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    usernameLabel.textColor = .darkText
+    usernameLabel.textColor = .label
 
     emailLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-    emailLabel.textColor = .darkText
+    emailLabel.textColor = .label
 
     followersLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    followersLabel.textColor = .darkText
+    followersLabel.textColor = .label
 
     followingLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    followingLabel.textColor = .darkText
+    followingLabel.textColor = .label
 
     userContentLabelsStackView.axis = .vertical
     userContentLabelsStackView.alignment = .fill

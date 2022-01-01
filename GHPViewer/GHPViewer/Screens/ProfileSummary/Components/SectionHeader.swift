@@ -38,13 +38,13 @@ final class SectionHeader: UIView {
 
   private func setupComponents() {
     titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
-    titleLabel.textColor = .darkText
+    titleLabel.textColor = .label
 
-    actionButton.setTitleColor(.darkText, for: .normal)
+    actionButton.setTitleColor(.label, for: .normal)
     actionButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
     actionButton.addBorders(
       edges: .bottom,
-      color: .darkText,
+      color: .label,
       inset: DesignGuidelines.underlineInsets,
       thickness: DesignGuidelines.underlineThickness
     )

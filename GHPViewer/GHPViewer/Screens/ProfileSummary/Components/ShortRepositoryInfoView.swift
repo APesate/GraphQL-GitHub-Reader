@@ -38,7 +38,6 @@ final class ShortRepositoryInfoView: UIView {
   // MARK: - Interface
 
   func configure(with model: ViewModel) {
-    loadImage(for: avatarImageView, from: model.avatarUrl)
     ownerLabel.text = model.ownerName
     repositoryTitleLabel.text = model.repositoryTitle
     repositoryDescriptionLabel.text = model.repositoryDescription
@@ -46,18 +45,14 @@ final class ShortRepositoryInfoView: UIView {
     mainLanguageLabel.text = model.mainLanguageName
 
     if let color = model.mainLanguageColor {
-      mainLanguageView.backgroundColor = UIColor(hex: color) ?? .darkText
+      mainLanguageView.backgroundColor = UIColor(hex: color) ?? .label
     }
-  }
 
-  // TODO: Extract to a common place
-  private func loadImage(for imageView: UIImageView, from url: URL?) {
-    guard let url = url else { return }
-    DispatchQueue.global().async {
-      guard let data = try? Data(contentsOf: url) else { return }
-      DispatchQueue.main.async {
-        imageView.image = UIImage(data: data)
-      }
+    if let url = model.avatarUrl {
+      avatarImageView.setImage(
+        from: url,
+        placeholder: UIImage(named: "avatar-placeholder")
+      )
     }
   }
 
@@ -77,20 +72,20 @@ final class ShortRepositoryInfoView: UIView {
     mainLanguageView.layer.cornerRadius = DesignGuidelines.mainLanguageColorViewRadius
 
     ownerLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    ownerLabel.textColor = .darkText
+    ownerLabel.textColor = .label
 
     repositoryTitleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-    repositoryTitleLabel.textColor = .darkText
+    repositoryTitleLabel.textColor = .label
 
     // Number of lines capped at 1 to preserve consistency. Design didn't specify
     repositoryDescriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    repositoryDescriptionLabel.textColor = .darkText
+    repositoryDescriptionLabel.textColor = .label
 
     starsCountLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    starsCountLabel.textColor = .darkText
+    starsCountLabel.textColor = .label
 
     mainLanguageLabel.font = .systemFont(ofSize: 16, weight: .regular)
-    mainLanguageLabel.textColor = .darkText
+    mainLanguageLabel.textColor = .label
 
     starImageView.image = UIImage(named: "star")
 
