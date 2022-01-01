@@ -138,8 +138,8 @@ private extension ProfileSummaryView {
       with:
       VerticalShowcase.ViewModel(
         header: SectionHeader.ViewModel(
-          sectionTitle: "Pinned",
-          actionTitle: "View all"
+          sectionTitle: "pinned".localized,
+          actionTitle: "view-all".localized
         ),
         items: repositories
       )
@@ -172,8 +172,8 @@ private extension ProfileSummaryView {
       with:
       HorizontalShowcase.ViewModel(
         header: SectionHeader.ViewModel(
-          sectionTitle: "Top repositories",
-          actionTitle: "View all"
+          sectionTitle: "top-repositories".localized,
+          actionTitle: "view-all".localized
         ),
         items: repositories
       )
@@ -206,8 +206,8 @@ private extension ProfileSummaryView {
       with:
       HorizontalShowcase.ViewModel(
         header: SectionHeader.ViewModel(
-          sectionTitle: "Starred repositories",
-          actionTitle: "View all"
+          sectionTitle: "starred-repositories".localized,
+          actionTitle: "view-all".localized
         ),
         items: repositories
       )

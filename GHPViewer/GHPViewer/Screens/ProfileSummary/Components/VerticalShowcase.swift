@@ -37,7 +37,10 @@ final class VerticalShowcase: UIView {
   // MARK: - Private
 
   private func prepareForReuse() {
-    contentStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    contentStackView
+      .arrangedSubviews
+      .filter { !($0 is SectionHeader) }
+      .forEach { $0.removeFromSuperview() }
   }
 
   // MARK: Views Setup

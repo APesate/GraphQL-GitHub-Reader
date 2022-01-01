@@ -45,27 +45,19 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
 
   func didFail(with error: ProfileSummaryViewError) {
     profileSummaryView.hideComponents(true, animated: true)
+    let icon =
+      error == .accountNotFound ?
+      UIImage(named: "error_404") :
+      UIImage(named: "error_warning")
 
-    switch error {
-    case .accountNotFound:
-      profileSummaryView
-        .set(
-          errorModel:
-          ErrorView.Model(
-            icon: UIImage(named: "error_404"),
-            description: "Account not found."
-          )
+    profileSummaryView
+      .set(
+        errorModel:
+        ErrorView.Model(
+          icon: icon,
+          description: error.localizedDescription
         )
-    case .somethingWentWrong:
-      profileSummaryView
-        .set(
-          errorModel:
-          ErrorView.Model(
-            icon: UIImage(named: "error_warning"),
-            description: "Something went wrong."
-          )
-        )
-    }
+      )
   }
 
   // TODO: This could be sliced into several function per view component if needed. Keeping it together for simplicity.
@@ -78,7 +70,7 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
   // MARK: - Private
 
   private func setupComponents() {
-    title = "Profile"
+    title = "profile".localized
 
     profileSummaryView.refreshControl.addTarget(
       self,
