@@ -76,7 +76,7 @@ final class SectionHeader: UIView {
 // MARK: - View Model
 
 extension SectionHeader {
-  struct ViewModel {
+  struct ViewModel: Equatable {
     let sectionTitle: String
     let actionTitle: String
   }

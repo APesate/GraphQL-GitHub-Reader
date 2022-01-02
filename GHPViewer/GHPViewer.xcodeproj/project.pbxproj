@@ -41,6 +41,7 @@
 		FEC0EFDC2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDB2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift */; };
 		FEC0EFDE2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */; };
 		FEC0EFE02780EBE4002B1E80 /* ProfileSummaryViewStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */; };
+		FECFD30C2781F8A3004743FF /* ProfileSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFD30B2781F8A3004743FF /* ProfileSummaryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryStub.swift; sourceTree = "<group>"; };
 		FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewStub.swift; sourceTree = "<group>"; };
 		FECFD3092781F127004743FF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localization/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FECFD30B2781F8A3004743FF /* ProfileSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				FE89214B277E279B0075B454 /* ProfileSummary.swift */,
+				FECFD30B2781F8A3004743FF /* ProfileSummaryViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				FE9FD903277CC3DC00F127B9 /* AppDelegate.swift in Sources */,
 				FE89213D277DFC770075B454 /* ProfileSummaryPresenterProtocol.swift in Sources */,
 				FEC0EFD12780E189002B1E80 /* ProfileSummaryRepositoryProtocol.swift in Sources */,
+				FECFD30C2781F8A3004743FF /* ProfileSummaryViewModel.swift in Sources */,
 				FE892140277E1C080075B454 /* ProfileSummaryRepository.swift in Sources */,
 				FE1B273E277D0A1800ECE29F /* ProfileSummaryViewController.swift in Sources */,
 				FE892143277E1D290075B454 /* ProfileSummaryBuilder.swift in Sources */,

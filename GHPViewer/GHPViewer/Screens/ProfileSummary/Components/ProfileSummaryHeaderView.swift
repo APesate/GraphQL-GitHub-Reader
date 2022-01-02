@@ -176,7 +176,7 @@ final class ProfileSummaryHeaderView: UIView {
 // MARK: - View Model
 
 extension ProfileSummaryHeaderView {
-  struct ViewModel {
+  struct ViewModel: Equatable {
     let avatarUrl: URL?
     let name: String
     let username: String

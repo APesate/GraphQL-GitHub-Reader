@@ -71,6 +71,7 @@ class ProfileSummaryPresenterTests: XCTestCase {
 
   func testInformsViewAfterSuccessfulDataLoad() {
     let expectedResponse = dummyProfile()
+    let expectedViewModel = ProfileSummaryViewModel(model: expectedResponse)
     repository.expectedResponse = expectedResponse
 
     // When
@@ -80,7 +81,7 @@ class ProfileSummaryPresenterTests: XCTestCase {
     XCTAssertTrue(repository.fetchUserSpy.wasCalled)
     XCTAssertTrue(view.didLoadDataSpy.wasCalled)
     XCTAssertFalse(view.didFailWithSpy.wasCalled)
-    XCTAssertEqual(view.didLoadDataSpy.calls.first, expectedResponse)
+    XCTAssertEqual(view.didLoadDataSpy.calls.first, expectedViewModel)
     XCTAssertEqual(sut.profileSummary, expectedResponse)
   }
 

@@ -82,7 +82,7 @@ final class VerticalShowcase: UIView {
 // MARK: - View Model
 
 extension VerticalShowcase {
-  struct ViewModel {
+  struct ViewModel: Equatable {
     let header: SectionHeader.ViewModel
     let items: [ShortRepositoryInfoView.ViewModel]
   }
