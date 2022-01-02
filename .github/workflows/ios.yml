@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Bundle Install
+        run: |
+          bundle install
       - name: Build
         run: |
           cd $project_location
