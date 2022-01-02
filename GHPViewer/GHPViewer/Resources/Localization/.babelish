@@ -1,0 +1,18 @@
+###################################### Base2CSV ######################################
+
+filenames: ["en.lproj/Localizable.strings", "nl.lproj/Localizable.strings", "es.lproj/Localizable.strings"]
+headers: ["Constants", "English", "Dutch", "Spanish"]
+csv_filename: "Localizable.csv"              # location of output file
+
+###################################### CSV2Base ######################################
+
+filename: "Localizable.csv"          # CSV file (CSV_FILENAME) to convert from
+langs:                               # Languages to convert. i.e. English:en
+  English: "en"
+  Dutch: "nl"
+  Spanish: "es"
+keys_column: 0                       # Position of column for keys
+
+###################################### General ######################################
+
+csv_separator: ','				 # CSV column separator character, uses ',' by default
