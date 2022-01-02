@@ -2,6 +2,8 @@
 "pinned"                  = "Relevantes";
 "view-all"                = "Ver todos";
 "top-repositories"        = "Repositorios resaltantes";
-"starred-repositories"    = "Repositorios Estrella";
+"starred-repositories"    = "Repositorios estrella";
+"followers"               = "seguidores";
+"following"               = "siguiendo";
 "error-account-not-found" = "No se encontró la cuenta.";
 "error-generic"           = "Ocurrió un error. Intenta de nuevo.";

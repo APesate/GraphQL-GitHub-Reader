@@ -3,5 +3,7 @@
 "view-all"                = "View All";
 "top-repositories"        = "Top Repositories";
 "starred-repositories"    = "Starred repositories";
+"followers"               = "followers";
+"following"               = "following";
 "error-account-not-found" = "Account not found.";
 "error-generic"           = "Something went wrong.";

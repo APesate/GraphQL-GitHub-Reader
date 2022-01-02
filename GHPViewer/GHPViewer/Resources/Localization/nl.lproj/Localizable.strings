@@ -3,5 +3,7 @@
 "view-all"                = "Bekijk alles";
 "top-repositories"        = "Topbronnen";
 "starred-repositories"    = "Bewaarplaatsen met ster";
+"followers"               = "volgers";
+"following"               = "volgend";
 "error-account-not-found" = "Profiel niet gevonden.";
 "error-generic"           = "Er is iets fout gegaan.";
