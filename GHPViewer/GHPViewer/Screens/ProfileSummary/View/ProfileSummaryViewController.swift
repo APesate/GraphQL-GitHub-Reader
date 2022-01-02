@@ -61,7 +61,7 @@ final class ProfileSummaryViewController: UIViewController, ProfileSummaryViewPr
   }
 
   // TODO: This could be sliced into several function per view component if needed. Keeping it together for simplicity.
-  func didLoad(data: ProfileSummary) {
+  func didLoad(data: ProfileSummaryViewModel) {
     profileSummaryView.set(errorModel: nil)
     profileSummaryView.hideComponents(false, animated: true)
     profileSummaryView.configure(with: data)

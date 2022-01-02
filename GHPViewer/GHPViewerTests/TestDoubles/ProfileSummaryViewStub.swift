@@ -10,7 +10,7 @@ import struct MockingHelpers.FunctionSpy
 
 final class ProfileSummaryViewStub: ProfileSummaryViewProtocol {
   private(set) var isLoadingSpy = FunctionSpy<Bool, Void>()
-  private(set) var didLoadDataSpy = FunctionSpy<ProfileSummary, Void>()
+  private(set) var didLoadDataSpy = FunctionSpy<ProfileSummaryViewModel, Void>()
   private(set) var didFailWithSpy = FunctionSpy<ProfileSummaryViewError, Void>()
 
   var isLoading: Bool = false {
@@ -19,7 +19,7 @@ final class ProfileSummaryViewStub: ProfileSummaryViewProtocol {
     }
   }
 
-  func didLoad(data: ProfileSummary) {
+  func didLoad(data: ProfileSummaryViewModel) {
     didLoadDataSpy.call(parameters: data)
   }
 

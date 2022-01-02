@@ -46,11 +46,29 @@ final class ProfileSummaryView: UIView, ErrorStateable {
     }
   }
 
-  func configure(with summary: ProfileSummary) {
-    configureHeaderView(with: summary)
-    configurePinnedView(with: summary)
-    configureTopRepositoriesView(with: summary)
-    configureStarredView(with: summary)
+  func configure(with summary: ProfileSummaryViewModel) {
+    headerView.configure(with: summary.header)
+
+    if let model = summary.pinnedItems {
+      pinnedRepositoriesView.configure(with: model)
+      pinnedRepositoriesView.isHidden = false
+    } else {
+      pinnedRepositoriesView.isHidden = true
+    }
+
+    if let model = summary.topRepositories {
+      topRepositoriesView.configure(with: model)
+      topRepositoriesView.isHidden = false
+    } else {
+      topRepositoriesView.isHidden = true
+    }
+
+    if let model = summary.starredRepositories {
+      starredRepositoriesView.configure(with: model)
+      starredRepositoriesView.isHidden = false
+    } else {
+      starredRepositoriesView.isHidden = true
+    }
   }
 
   // MARK: - Private
@@ -92,125 +110,5 @@ final class ProfileSummaryView: UIView, ErrorStateable {
       topRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
       starredRepositoriesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
     ])
-  }
-}
-
-// MARK: - View Configuration
-
-private extension ProfileSummaryView {
-  func configureHeaderView(with summary: ProfileSummary) {
-    headerView.configure(
-      with:
-      ProfileSummaryHeaderView.ViewModel(
-        avatarUrl: summary.user.avatarUrl,
-        name: summary.user.name,
-        username: summary.user.username,
-        followersCount: summary.user.followers.totalCount,
-        followingCount: summary.user.following.totalCount,
-        email: summary.user.email
-      )
-    )
-  }
-
-  func configurePinnedView(with summary: ProfileSummary) {
-    guard let pinnedItems = summary.user.pinnedItems?.nodes,
-          !pinnedItems.isEmpty
-    else {
-      pinnedRepositoriesView.isHidden = true
-      return
-    }
-
-    let repositories =
-      pinnedItems
-        .map {
-          ShortRepositoryInfoView.ViewModel(
-            avatarUrl: $0.owner.avatarUrl,
-            ownerName: $0.owner.username,
-            repositoryTitle: $0.title,
-            repositoryDescription: $0.description,
-            starsCount: $0.starsCount,
-            mainLanguageName: $0.languages.mainLanguage,
-            mainLanguageColor: $0.languages.mainLanguageColor
-          )
-        }
-
-    pinnedRepositoriesView.configure(
-      with:
-      VerticalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(
-          sectionTitle: "pinned".localized,
-          actionTitle: "view-all".localized
-        ),
-        items: repositories
-      )
-    )
-  }
-
-  func configureTopRepositoriesView(with summary: ProfileSummary) {
-    guard let topRepositories = summary.user.topRepositories?.nodes,
-          !topRepositories.isEmpty
-    else {
-      topRepositoriesView.isHidden = true
-      return
-    }
-
-    let repositories =
-      topRepositories
-        .map {
-          ShortRepositoryInfoView.ViewModel(
-            avatarUrl: $0.owner.avatarUrl,
-            ownerName: $0.owner.username,
-            repositoryTitle: $0.title,
-            repositoryDescription: $0.description,
-            starsCount: $0.starsCount,
-            mainLanguageName: $0.languages.mainLanguage,
-            mainLanguageColor: $0.languages.mainLanguageColor
-          )
-        }
-
-    topRepositoriesView.configure(
-      with:
-      HorizontalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(
-          sectionTitle: "top-repositories".localized,
-          actionTitle: "view-all".localized
-        ),
-        items: repositories
-      )
-    )
-  }
-
-  func configureStarredView(with summary: ProfileSummary) {
-    guard let starredRepositories = summary.user.starredRepositories?.nodes,
-          !starredRepositories.isEmpty
-    else {
-      starredRepositoriesView.isHidden = true
-      return
-    }
-
-    let repositories =
-      starredRepositories
-        .map {
-          ShortRepositoryInfoView.ViewModel(
-            avatarUrl: $0.owner.avatarUrl,
-            ownerName: $0.owner.username,
-            repositoryTitle: $0.title,
-            repositoryDescription: $0.description,
-            starsCount: $0.starsCount,
-            mainLanguageName: $0.languages.mainLanguage,
-            mainLanguageColor: $0.languages.mainLanguageColor
-          )
-        }
-
-    starredRepositoriesView.configure(
-      with:
-      HorizontalShowcase.ViewModel(
-        header: SectionHeader.ViewModel(
-          sectionTitle: "starred-repositories".localized,
-          actionTitle: "view-all".localized
-        ),
-        items: repositories
-      )
-    )
   }
 }

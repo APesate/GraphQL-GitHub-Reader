@@ -39,8 +39,9 @@ final class ProfileSummaryPresenter: ProfileSummaryPresenterProtocol {
 
       do {
         let model = try result.get()
+        let viewModel = ProfileSummaryViewModel(model: model)
         self.profileSummary = model
-        self.view?.didLoad(data: model)
+        self.view?.didLoad(data: viewModel)
       } catch GraphQLClientError.noData {
         self.view?.didFail(with: .accountNotFound)
       } catch {

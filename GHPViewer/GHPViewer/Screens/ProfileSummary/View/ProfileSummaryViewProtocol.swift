@@ -8,6 +8,6 @@
 protocol ProfileSummaryViewProtocol: AnyObject {
   var isLoading: Bool { get set }
 
-  func didLoad(data: ProfileSummary)
+  func didLoad(data: ProfileSummaryViewModel)
   func didFail(with error: ProfileSummaryViewError)
 }

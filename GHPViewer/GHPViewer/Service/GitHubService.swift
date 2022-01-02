@@ -13,5 +13,5 @@ struct GitHubService: Service {
 
   // TODO: This token should be kept secret. Keeping here for simplicity.
   var additionalHeaders: [String: String]? =
-    ["Authorization": "INSERT_GITHUB_PAT"]
+    ["Authorization": "Bearer INTERT_TOKEN_HERE"]
 }
