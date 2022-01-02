@@ -1,11 +1,10 @@
-![Header](./Resources/ReadmeFiles/AppIcon.png)
+<img src="./Resources/ReadmeFiles/AppIcon.png" alt="Logo" style="width:25%;" />
 
 # GHPViewer
 
 **A beatiful way to see your GitHub Profile**
 
-<img src="./Resources/ReadmeFiles/ProfileSummary-Light.png" alt="File Selection Screen" style="zoom:25%;" />
-<img src="./Resources/ReadmeFiles/ProfileSummary-Dark.png" alt="File Selection Screen" style="zoom:25%;" />
+<img src="./Resources/ReadmeFiles/ProfileSummary-Light.png" alt="Profile-Light" style="width:30%;" /> <img src="./Resources/ReadmeFiles/ProfileSummary-Dark.png" alt="Profile-Dark" style="width:30%;" />
 
 ---------
 
