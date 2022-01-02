@@ -39,11 +39,11 @@ final class ProfileSummaryHeaderView: UIView {
     nameLabel.text = model.name
     usernameLabel.text = model.username
     followersLabel.attributedText = attributedFollowsString(
-      for: "followers",
+      for: "followers".localized,
       with: model.followersCount
     )
     followingLabel.attributedText = attributedFollowsString(
-      for: "following",
+      for: "following".localized,
       with: model.followingCount
     )
 

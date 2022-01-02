@@ -3,6 +3,8 @@ profile,Profile,Profiel,Perfil
 pinned,Pinned,Vastgepind,Relevantes
 view-all,View All,Bekijk alles,Ver todos
 top-repositories,Top Repositories,Topbronnen,Repositorios resaltantes
-starred-repositories,Starred repositories,Bewaarplaatsen met ster,Repositorios Estrella
+starred-repositories,Starred repositories,Bewaarplaatsen met ster,Repositorios estrella
+followers,followers,volgers,seguidores
+following,following,volgend,siguiendo
 error-account-not-found,Account not found.,Profiel niet gevonden.,No se encontró la cuenta.
 error-generic,Something went wrong.,Er is iets fout gegaan.,Ocurrió un error. Intenta de nuevo.
