@@ -1,0 +1,29 @@
+name: iOS Workflow
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build and Test GHPViewer scheme using an iPhone simulator
+    runs-on: macos-latest
+    env:
+      scheme: ${{ 'GHPViewer' }}
+      platform: ${{ 'iOS Simulator' }}
+      device: ${{ 'iPhone 13 Pro' }}
+      project_name: ${{ 'GHPViewer.xcodeproj' }}
+      project_location: ${{ 'GHPViewer' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          cd $project_location
+          xcodebuild build-for-testing -scheme "$scheme"  -project "$project_name" -destination "platform=$platform,name=$device"
+      - name: Test
+        run: |
+          cd $project_location
+          xcodebuild test-without-building -scheme "$scheme" -project "$project_name" -destination "platform=$platform,name=$device"
