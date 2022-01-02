@@ -1,0 +1,7 @@
+"profile"                 = "Profile";
+"pinned"                  = "Pinned";
+"view-all"                = "View All";
+"top-repositories"        = "Top Repositories";
+"starred-repositories"    = "Starred repositories";
+"error-account-not-found" = "Account not found.";
+"error-generic"           = "Something went wrong.";

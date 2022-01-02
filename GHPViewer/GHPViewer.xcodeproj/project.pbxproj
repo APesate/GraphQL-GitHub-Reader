@@ -54,8 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FE114BA52780F912007D590C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FE114BA82780FAFB007D590C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FE114BA52780F912007D590C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FE114BA82780FAFB007D590C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Localization/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FE1B2731277CF4C000ECE29F /* GraphQLClient */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GraphQLClient; sourceTree = "<group>"; };
 		FE1B2735277CF6BB00ECE29F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		FE1B273D277D0A1800ECE29F /* ProfileSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +91,7 @@
 		FEC0EFDB2780E8E1002B1E80 /* ProfileSummaryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryPresenterTests.swift; sourceTree = "<group>"; };
 		FEC0EFDD2780E90C002B1E80 /* ProfileSummaryRepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryRepositoryStub.swift; sourceTree = "<group>"; };
 		FEC0EFDF2780EBE4002B1E80 /* ProfileSummaryViewStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSummaryViewStub.swift; sourceTree = "<group>"; };
+		FECFD3092781F127004743FF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localization/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +359,7 @@
 			buildConfigurationList = FE9FD929277CC3DF00F127B9 /* Build configuration list for PBXNativeTarget "GHPViewer" */;
 			buildPhases = (
 				FE9FD8FB277CC3DC00F127B9 /* Sources */,
+				FECFD30A2781F145004743FF /* Localization */,
 				FE9FD8FC277CC3DC00F127B9 /* Frameworks */,
 				FE9FD8FD277CC3DC00F127B9 /* Resources */,
 			);
@@ -422,6 +424,7 @@
 				en,
 				Base,
 				nl,
+				es,
 			);
 			mainGroup = FE9FD8F6277CC3DC00F127B9;
 			packageReferences = (
@@ -456,6 +459,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FECFD30A2781F145004743FF /* Localization */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/GHPViewer/Resources/Localizable.strings",
+			);
+			name = Localization;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export LANG=en_US.UTF-8\nexport LANGUAGE=en_US.UTF-8\nexport LC_ALL=en_US.UTF-8\n\ncd GHPViewer/Resources/Localization\n\nif [ -x \"$(command -v babelish)\" ]; then\n  bundle exec babelish csv2strings\nelse\n  GEM_HOME=$(ruby -rubygems -e 'puts Gem.user_dir')\n  BABELISH=$GEM_HOME/bin/babelish\n  $BABELISH csv2strings\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FE9FD8FB277CC3DC00F127B9 /* Sources */ = {
@@ -515,6 +540,7 @@
 			children = (
 				FE114BA52780F912007D590C /* en */,
 				FE114BA82780FAFB007D590C /* nl */,
+				FECFD3092781F127004743FF /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -672,7 +698,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -700,7 +726,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

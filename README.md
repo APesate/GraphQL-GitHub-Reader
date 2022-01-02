@@ -16,6 +16,12 @@
   - **GHPViewer:** Contains the iOS Application related files.
   - **Packages:** Contains the three local packages from which the application depends on. For more details about these packages, please check their respective README files.
 
+Steps:
+- Run `bundle install` to install the dependencies.
+- Open `GHPViewer.xcodeproj`
+- Build
+- Run
+
 ---------
 
 ## Usage
@@ -37,8 +43,8 @@ Once the token has been set to the additional headers of the service, the applic
     - The top 10 starred repositories.
 - ✅ The client uses a SQLite DB to cache the data fetched from the server. The current max age for this cache is one day.
 - ✅ Beautiful UI in both Light and Dark mode.
-- ✅ Localized into two languages: English(default) and Dutch.
-- ✅ Basic setup to build and test the project and its packages on each PR and Merge to master.
+- ✅ Localized into three languages: English(default), Spanish, Dutch.
+- ✅ Basic setup to build and test the project and its packages on each PR and Merge to master with GitHub Actions.
 
 
 **Note:** It is possible for users to pin Gists to their profiles. With the current implementation of the project, the app will fail to render the profile if the user has a gist pinned. This is a known issue and will be improved in a future release.
@@ -65,6 +71,12 @@ Once the token has been set to the additional headers of the service, the applic
 
 - The project is powered by [Apollo](http://apollographql.com) for an explanation on how this is used, please check the README of the `GraphQLClient` package.
 - The GitHub GraphQL API [Docs](https://docs.github.com/en/graphql).
+
+### Localization
+
+This project uses [Babelish](https://github.com/netbe/Babelish) to handle the generation of the localization files based on a csv file that serves as source of truth.
+
+This file can be found at: [`GHPViewer/Resources/Localization`](./GHPViewer/GHPViewer/Resources/Localization/Localizable.csv)
 
 ## Structure
 
