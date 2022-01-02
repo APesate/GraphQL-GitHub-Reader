@@ -1,4 +1,5 @@
 <img src="./Resources/ReadmeFiles/AppIcon.png" alt="Logo" style="width:25%;" />
+[![Build & Test](https://github.com/APesate/GraphQL-GitHub-Reader/actions/workflows/ios.yml/badge.svg)](https://github.com/APesate/GraphQL-GitHub-Reader/actions/workflows/ios.yml)
 
 # GHPViewer
 
